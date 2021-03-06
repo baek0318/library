@@ -11,3 +11,7 @@ class DemoApplicationTests {
 	}
 
 }
+
+//h2 설정
+//no tests were found
+//specification
