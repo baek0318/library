@@ -1,6 +1,8 @@
-com/library/study/demo/DemoApplicationTests.java
- com.library.study.demo.DemoApplicationTests
 com/library/study/demo/domain/UserTest.java
  com.library.study.demo.domain.UserTest
+com/library/study/demo/DemoApplicationTests.java
+ com.library.study.demo.DemoApplicationTests
 com/library/study/demo/domain/BookTest.java
  com.library.study.demo.domain.BookTest
+com/library/study/demo/domain/LibraryTest.java
+ com.library.study.demo.domain.LibraryTest
