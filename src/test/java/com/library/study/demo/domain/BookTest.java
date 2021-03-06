@@ -19,8 +19,4 @@ public class BookTest {
         assertThat(book.getAuthor()).isEqualTo("tobi");
         assertThat(book.getISBN()).isEqualTo("101010");
     }
-    @Test
-    void 연관관계test(){
-
-    }
 }
