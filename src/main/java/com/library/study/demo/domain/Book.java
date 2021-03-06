@@ -28,6 +28,10 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @JoinColumn(name = "LIBRARY_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Library library;
+
     @Builder
     public Book(String title, String author, String ISBN) {
         this.title = title;

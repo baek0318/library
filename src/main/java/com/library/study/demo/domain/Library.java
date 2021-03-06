@@ -1,16 +1,16 @@
 package com.library.study.demo.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Library {
 
     @Id @GeneratedValue
@@ -18,6 +18,10 @@ public class Library {
 
     private String name;
 
-    @OneToMany
+    public Library(String name){
+        this.name=name;
+    }
+
+    @OneToMany(mappedBy = "library",fetch = FetchType.LAZY)
     private List<Book> Books = new ArrayList<Book>();
 }
