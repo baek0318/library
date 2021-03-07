@@ -38,7 +38,17 @@ public class AuthControllerTest {
 //                .build();
         UserDto.SignupReq reqDto = new UserDto.SignupReq(userId,password);
 
-        UserDgit
+        UserDto.SignupRes resDto =  webTestClient.post()
+                .uri("/api/signup")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(reqDto),UserDto.SignupReq.class)
+                .exchange()
+                .expectStatus().isCreated()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBody(UserDto.SignupRes.class)
+                .returnResult()
+                .getResponseBody();
         assertThat(resDto.getId()).isEqualTo(1L);
     }
 }
