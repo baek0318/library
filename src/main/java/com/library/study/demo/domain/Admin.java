@@ -11,11 +11,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Admin implements User{
-    @Id
-    public String id;
-    public String password;
-    public String name;
+public class Admin extends User{
 
     public Admin(String id, String password, String name) {
         this.id = id;

@@ -8,16 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
-@Entity(name="member")
 @Getter
 @NoArgsConstructor
 @Setter
-public class Member implements User{
-    @Id
-    public String id;
+public class Member extends User {
 
-    public String password;
-    public String name;
 
     public Member(String id, String password, String name) {
         this.id = id;
