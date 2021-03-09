@@ -14,11 +14,14 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @Getter
 public class Library {
-    private ArrayList<Book> bookList;
-    private ArrayList<Book> borrowedBookList;
+
+//    private ArrayList<Book> bookList; // 가지고 있는 책 list
+//    private ArrayList<Book> borrowedBookList; // 빌려준 책 list
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
+
 
 
 }

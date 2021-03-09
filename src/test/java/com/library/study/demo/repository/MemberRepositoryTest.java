@@ -7,6 +7,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -29,6 +31,24 @@ public class MemberRepositoryTest {
         assertThat(saveMember.getName(),is(member.getName()));
         assertThat(saveMember.getPassword(),is(member.getPassword()));
         assertThat(saveMember.getId(),is(member.getId()));
+    }
+
+    @Test
+    public void memberUpdateTest() {
+        Member updateMember = memberRepository.save(member);
+        String changePassword = "qqw112";
+        member.setPassword(changePassword);
+        Member findMember = memberRepository.findById(updateMember.getId()).orElse(null);
+        assertThat(findMember.getPassword(), is(updateMember.getPassword()));
+    }
+
+    @Test
+    public void memberDeleteTest() {
+        Member deleteMember = memberRepository.save(member);
+        memberRepository.deleteById(deleteMember.getId());
+        List<Member> memberList = memberRepository.findAll();
+
+        assertThat(memberList.size(), is(0));
     }
 
 }
