@@ -32,7 +32,7 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
   
 ## ❌ 문제 해결 또는 궁금점 해결
 - **Specification 오류**  
-  [Specification 정리](https://www.notion.so/peachberry0318/Specification-8fb7dc858bf347c79682fd0128ed7acc)
+  [Specification 정리](./img/Specification.pdf)
 - **Mockito any() 오류**
 - **Spring boot h2 db 초기설정**
 - **테스트가 안되는 상황** 
