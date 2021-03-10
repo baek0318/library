@@ -1,7 +1,8 @@
 package com.library.study.demo.controller;
 
-import com.library.study.demo.dto.UserDto;
-import org.assertj.core.api.Assertions;
+import com.library.study.demo.domain.Role;
+import com.library.study.demo.dto.SignUpReqDto;
+import com.library.study.demo.dto.SignUpResDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
@@ -30,23 +31,22 @@ public class AuthControllerTest {
     void 회원가입테스트() {
         String userId = "testid";
         String password = "testpw1234~@#";
+        Role role = Role.USER;
+        SignUpReqDto reqDto = SignUpReqDto.builder()
+                .loginid(userId)
+                .password(password)
+                .role(role)
+                .build();
 
-//        User user = User.builder()
-//                .userId(userId)
-//                .password(password)
-//                .role(Role.USER)
-//                .build();
-        UserDto.SignupReq reqDto = new UserDto.SignupReq(userId,password);
-
-        UserDto.SignupRes resDto =  webTestClient.post()
+        SignUpResDto resDto =  webTestClient.post()
                 .uri("/api/signup")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(reqDto),UserDto.SignupReq.class)
+                .body(Mono.just(reqDto),SignUpReqDto.class)
                 .exchange()
                 .expectStatus().isCreated()
                 .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(UserDto.SignupRes.class)
+                .expectBody(SignUpResDto.class)
                 .returnResult()
                 .getResponseBody();
         assertThat(resDto.getId()).isEqualTo(1L);

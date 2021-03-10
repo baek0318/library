@@ -20,7 +20,7 @@ public class User {
     private Long id;
 
     @Column(nullable=false)
-    private String userId;
+    private String loginid;
 
     @Column(nullable = false)
     private String password;
@@ -32,8 +32,8 @@ public class User {
     private List<Book> books = new ArrayList<Book>();
 
     @Builder
-    public User(String userId, String password, Role role) {
-        this.userId = userId;
+    public User(String loginid, String password, Role role) {
+        this.loginid = loginid;
         this.password = password;
         this.role = role;
     }

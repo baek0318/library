@@ -1,11 +1,12 @@
-com/library/study/demo/dto/UserDto.java
- com.library.study.demo.dto.UserDto
- com.library.study.demo.dto.UserDto$SignupReq
- com.library.study.demo.dto.UserDto$SignupRes
+com/library/study/demo/App.java
+ com.library.study.demo.App
 com/library/study/demo/repository/BookRepository.java
  com.library.study.demo.repository.BookRepository
 com/library/study/demo/domain/Role.java
  com.library.study.demo.domain.Role
+com/library/study/demo/dto/SignUpReqDto.java
+ com.library.study.demo.dto.SignUpReqDto
+ com.library.study.demo.dto.SignUpReqDto$SignUpReqDtoBuilder
 com/library/study/demo/repository/LibraryRepository.java
  com.library.study.demo.repository.LibraryRepository
 com/library/study/demo/domain/User.java
@@ -13,12 +14,14 @@ com/library/study/demo/domain/User.java
  com.library.study.demo.domain.User$UserBuilder
 com/library/study/demo/domain/Library.java
  com.library.study.demo.domain.Library
-com/library/study/demo/controller/AuthController.java
- com.library.study.demo.controller.AuthController
+com/library/study/demo/repository/UserRepository.java
+ com.library.study.demo.repository.UserRepository
 com/library/study/demo/domain/Book.java
  com.library.study.demo.domain.Book
  com.library.study.demo.domain.Book$BookBuilder
-com/library/study/demo/DemoApplication.java
- com.library.study.demo.DemoApplication
-com/library/study/demo/repository/UserRepository.java
- com.library.study.demo.repository.UserRepository
+com/library/study/demo/controller/AuthController.java
+ com.library.study.demo.controller.AuthController
+com/library/study/demo/service/AuthService.java
+ com.library.study.demo.service.AuthService
+com/library/study/demo/dto/SignUpResDto.java
+ com.library.study.demo.dto.SignUpResDto

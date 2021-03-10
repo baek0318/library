@@ -21,7 +21,7 @@ public class UserRepositoryTest {
     @Test
     void 유저저장테스트(){
         User user = User.builder()
-                .userId("testID")
+                .loginid("testID")
                 .password("testpw1234")
                 .role(USER)
                 .build();
@@ -29,6 +29,6 @@ public class UserRepositoryTest {
 
         Optional<User> one = userRepository.findById(savedUser.getId());
         User findone = one.orElseThrow(()->new RuntimeException());
-        assertThat(findone.getUserId()).isEqualTo(user.getUserId());
+        assertThat(findone.getLoginid()).isEqualTo(user.getLoginid());
     }
 }

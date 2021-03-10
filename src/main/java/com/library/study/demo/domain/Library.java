@@ -13,7 +13,9 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Library {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
+    @Column(name = "LIBRARY_ID")
     private Long id;
 
     private String name;
