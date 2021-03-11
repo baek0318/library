@@ -1,27 +1,42 @@
+com/library/study/demo/library/LibraryController.java
+ com.library.study.demo.library.LibraryController
+com/library/study/demo/library/LibraryRepository.java
+ com.library.study.demo.library.LibraryRepository
+com/library/study/demo/user/Role.java
+ com.library.study.demo.user.Role
+com/library/study/demo/user/AuthController.java
+ com.library.study.demo.user.AuthController
+com/library/study/demo/library/LibraryService.java
+ com.library.study.demo.library.LibraryService
+com/library/study/demo/exception/GlobalExceptionHandler.java
+ com.library.study.demo.exception.GlobalExceptionHandler
 com/library/study/demo/App.java
  com.library.study.demo.App
-com/library/study/demo/repository/BookRepository.java
- com.library.study.demo.repository.BookRepository
-com/library/study/demo/domain/Role.java
- com.library.study.demo.domain.Role
-com/library/study/demo/dto/SignUpReqDto.java
- com.library.study.demo.dto.SignUpReqDto
- com.library.study.demo.dto.SignUpReqDto$SignUpReqDtoBuilder
-com/library/study/demo/repository/LibraryRepository.java
- com.library.study.demo.repository.LibraryRepository
-com/library/study/demo/domain/User.java
- com.library.study.demo.domain.User
- com.library.study.demo.domain.User$UserBuilder
-com/library/study/demo/domain/Library.java
- com.library.study.demo.domain.Library
-com/library/study/demo/repository/UserRepository.java
- com.library.study.demo.repository.UserRepository
-com/library/study/demo/domain/Book.java
- com.library.study.demo.domain.Book
- com.library.study.demo.domain.Book$BookBuilder
-com/library/study/demo/controller/AuthController.java
- com.library.study.demo.controller.AuthController
-com/library/study/demo/service/AuthService.java
- com.library.study.demo.service.AuthService
-com/library/study/demo/dto/SignUpResDto.java
- com.library.study.demo.dto.SignUpResDto
+com/library/study/demo/user/dto/SignUpResDto.java
+ com.library.study.demo.user.dto.SignUpResDto
+com/library/study/demo/book/Book.java
+ com.library.study.demo.book.Book
+ com.library.study.demo.book.Book$BookBuilder
+com/library/study/demo/library/Library.java
+ com.library.study.demo.library.Library
+com/library/study/demo/user/User.java
+ com.library.study.demo.user.User
+ com.library.study.demo.user.User$UserBuilder
+com/library/study/demo/exception/ErrorCode.java
+ com.library.study.demo.exception.ErrorCode
+com/library/study/demo/exception/ErrorResponse.java
+ com.library.study.demo.exception.ErrorResponse
+ com.library.study.demo.exception.ErrorResponse$ErrorField
+com/library/study/demo/user/dto/SignUpReqDto.java
+ com.library.study.demo.user.dto.SignUpReqDto
+ com.library.study.demo.user.dto.SignUpReqDto$SignUpReqDtoBuilder
+com/library/study/demo/library/dto/LibraryDto.java
+ com.library.study.demo.library.dto.LibraryDto
+ com.library.study.demo.library.dto.LibraryDto$CreateRequest
+ com.library.study.demo.library.dto.LibraryDto$CreateResponse
+com/library/study/demo/user/AuthService.java
+ com.library.study.demo.user.AuthService
+com/library/study/demo/book/BookRepository.java
+ com.library.study.demo.book.BookRepository
+com/library/study/demo/user/UserRepository.java
+ com.library.study.demo.user.UserRepository

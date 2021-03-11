@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class SignUpResDto {
     Long id;
 }

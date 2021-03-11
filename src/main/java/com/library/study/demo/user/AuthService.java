@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class AuthService {
     private final UserRepository userRepository;
+
     @Transactional
     public SignUpResDto signUp(SignUpReqDto signUpReqDto){
         User savedUser = userRepository.save(signUpReqDto.toEntity());
