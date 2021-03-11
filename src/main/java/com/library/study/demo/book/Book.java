@@ -1,5 +1,7 @@
-package com.library.study.demo.domain;
+package com.library.study.demo.book;
 
+import com.library.study.demo.library.Library;
+import com.library.study.demo.user.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

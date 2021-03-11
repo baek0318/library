@@ -1,15 +1,13 @@
 package com.library.study.demo.service;
 
-import com.library.study.demo.domain.Role;
-import com.library.study.demo.domain.User;
-import com.library.study.demo.dto.SignUpReqDto;
-import com.library.study.demo.dto.SignUpResDto;
-import com.library.study.demo.repository.UserRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import com.library.study.demo.user.AuthService;
+import com.library.study.demo.user.Role;
+import com.library.study.demo.user.User;
+import com.library.study.demo.user.dto.SignUpReqDto;
+import com.library.study.demo.user.dto.SignUpResDto;
+import com.library.study.demo.user.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;

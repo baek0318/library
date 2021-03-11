@@ -1,5 +1,6 @@
-package com.library.study.demo.domain;
+package com.library.study.demo.library;
 
+import com.library.study.demo.book.Book;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

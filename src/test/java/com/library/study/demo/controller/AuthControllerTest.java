@@ -1,8 +1,8 @@
 package com.library.study.demo.controller;
 
-import com.library.study.demo.domain.Role;
-import com.library.study.demo.dto.SignUpReqDto;
-import com.library.study.demo.dto.SignUpResDto;
+import com.library.study.demo.user.Role;
+import com.library.study.demo.user.dto.SignUpReqDto;
+import com.library.study.demo.user.dto.SignUpResDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
@@ -28,7 +28,7 @@ public class AuthControllerTest {
     }
 
     @Test
-    void 회원가입테스트() {
+    void 회원가입_성공() {
         String userId = "testid";
         String password = "testpw1234~@#";
         Role role = Role.USER;
@@ -37,6 +37,7 @@ public class AuthControllerTest {
                 .password(password)
                 .role(role)
                 .build();
+
 
         SignUpResDto resDto =  webTestClient.post()
                 .uri("/api/signup")
@@ -50,5 +51,9 @@ public class AuthControllerTest {
                 .returnResult()
                 .getResponseBody();
         assertThat(resDto.getId()).isEqualTo(1L);
+    }
+    @Test
+    void 회원가입_중복(){
+
     }
 }

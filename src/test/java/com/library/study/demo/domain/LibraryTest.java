@@ -1,6 +1,6 @@
 package com.library.study.demo.domain;
 
-import org.assertj.core.api.Assertions;
+import com.library.study.demo.library.Library;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

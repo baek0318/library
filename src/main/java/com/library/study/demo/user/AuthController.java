@@ -1,8 +1,7 @@
-package com.library.study.demo.controller;
+package com.library.study.demo.user;
 
-import com.library.study.demo.dto.SignUpReqDto;
-import com.library.study.demo.dto.SignUpResDto;
-import com.library.study.demo.service.AuthService;
+import com.library.study.demo.user.dto.SignUpReqDto;
+import com.library.study.demo.user.dto.SignUpResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +27,7 @@ public class AuthController {
     public ResponseEntity join(@RequestBody SignUpReqDto signUpReqDto){
         SignUpResDto signUpResDto = authService.signUp(signUpReqDto);
         return ResponseEntity
-                .created(URI.create("/user/"+signUpResDto.getId()))
+                .created(URI.create("/users/"+signUpResDto.getId()))
                 .body(signUpResDto);
     }
 }

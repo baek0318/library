@@ -1,9 +1,7 @@
-package com.library.study.demo.service;
+package com.library.study.demo.user;
 
-import com.library.study.demo.domain.User;
-import com.library.study.demo.dto.SignUpReqDto;
-import com.library.study.demo.dto.SignUpResDto;
-import com.library.study.demo.repository.UserRepository;
+import com.library.study.demo.user.dto.SignUpReqDto;
+import com.library.study.demo.user.dto.SignUpResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +13,7 @@ public class AuthService {
     private final UserRepository userRepository;
     @Transactional
     public SignUpResDto signUp(SignUpReqDto signUpReqDto){
-        SignUpResDto signUpResDto = new SignUpResDto(10L);
-
         User savedUser = userRepository.save(signUpReqDto.toEntity());
-
         return new SignUpResDto(savedUser.getId());
     }
 }

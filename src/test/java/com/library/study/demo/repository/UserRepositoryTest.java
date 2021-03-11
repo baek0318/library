@@ -1,7 +1,7 @@
 package com.library.study.demo.repository;
 
-import com.library.study.demo.domain.User;
-import org.assertj.core.api.Assertions;
+import com.library.study.demo.user.User;
+import com.library.study.demo.user.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Optional;
 
-import static com.library.study.demo.domain.Role.USER;
+import static com.library.study.demo.user.Role.USER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest

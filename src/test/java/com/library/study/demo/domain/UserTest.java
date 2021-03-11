@@ -1,9 +1,9 @@
 package com.library.study.demo.domain;
 
-import org.assertj.core.api.Assertions;
+import com.library.study.demo.user.User;
 import org.junit.jupiter.api.Test;
 
-import static com.library.study.demo.domain.Role.USER;
+import static com.library.study.demo.user.Role.USER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserTest {
