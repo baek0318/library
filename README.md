@@ -35,4 +35,5 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
   [Specification 정리](./img/Specification.pdf)
 - **Mockito any() 오류**
 - **Spring boot h2 db 초기설정**
+  [Spring_boot_H2_.pdf](https://github.com/Spring-Study-20210220/library/files/6127293/Spring_boot_H2_.pdf)
 - **테스트가 안되는 상황** 
