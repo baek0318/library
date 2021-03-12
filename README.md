@@ -19,8 +19,12 @@
 - **Spring Data JPA**  
   개발 시간 단축과 DB말고 애플리케이션 코드에 더 집중하기 위해서 사용
 - **H2**  
-  in memory 데이터베이스로써 spring에서 자동 설정을 지원 가볍게 만들기 위해서 사용
+  H2는 자바로 만들어졌으며 그만큼 자바에대해 이식성이 높은 데이터베이스이다  
+  Mysql이나 다른 DB가 지원하는 대부분의 기능을 지원할 뿐 아니라  
+  Spring boot를 이용해서 작업할 시에 별다른 설정 파일을 만들어주지 않아도 연결이 가능하므로 빠르고 쉽게 테스트를 진행할 수 있다  
+  위의 의견과 이번 프로젝트가 간단한 프로젝트인것을 감안했을 떄 괜찮은 선택지라고 볼 수 있다
 - **Rest API**
+  
 - **Mockito**  
 service layer를 repository로 부터 분리해서 독립적인 테스트를 진행하기 위해서 사용
 
@@ -31,8 +35,9 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 
   
 ## ❌ 문제 해결 또는 궁금점 해결
-- **Specification 오류**  
-  [Specification 정리](./img/Specification.pdf)
-- **Mockito any() 오류**
-- **Spring boot h2 db 초기설정**
-- **테스트가 안되는 상황** 
+- **[Specification 오류/정리](./img/Specification.pdf)**
+- **[Mockito any() 오류](./img/Mockito_.pdf)**
+- **[Spring boot h2 db 초기설정](./img/Spring_boot_H2_.pdf)**
+- **테스트가 안되는 상황**  
+  - 정확한 원인은 모르겠으나 test 설정을 gradle -> Intellij로 변경후 IDE 재시작 
+  
