@@ -35,9 +35,16 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 
   
 ## ❌ 문제 해결 또는 궁금점 해결
+<<<<<<< HEAD
 - **[Specification 오류/정리](./img/Specification.pdf)**
 - **[Mockito any() 오류](./img/Mockito_.pdf)**
 - **[Spring boot h2 db 초기설정](./img/Spring_boot_H2_.pdf)**
 - **테스트가 안되는 상황**  
   - 정확한 원인은 모르겠으나 test 설정을 gradle -> Intellij로 변경후 IDE 재시작 
   
+=======
+- **Specification 오류**  
+  [Specification 정리](./img/Specification.pdf)
+- **Mockito any() 오류**
+- **Spring boot h2 db 초기설정**
+- **테스트가 안되는 상황**
