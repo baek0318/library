@@ -1,7 +1,9 @@
 package com.library.study.demo.library;
 
 import com.library.study.demo.book.Book;
+import com.library.study.demo.library.dto.LibraryDto;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,11 +22,29 @@ public class Library {
     private Long id;
 
     private String name;
+    private String address;
+    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
+    private List<Book> Books = new ArrayList<Book>();
 
-    public Library(String name){
-        this.name=name;
+    @Builder
+    Library(String name, String address) {
+        this.name = name;
+        this.address = address;
     }
 
-    @OneToMany(mappedBy = "library",fetch = FetchType.LAZY)
-    private List<Book> Books = new ArrayList<Book>();
+    public LibraryDto.Response toResponseDto() {
+        return LibraryDto.Response.builder()
+                .id(id)
+                .name(name)
+                .address(address)
+                .build();
+    }
+//    public void update(LibraryDto.Request reqDto){
+//        if(!reqDto.getAddress().equals("")){
+//            address=reqDto.getAddress();
+//        }
+//        if(!reqDto.getName().equals("")){
+//            name=reqDto.getName();
+//        }
+//    }
 }

@@ -9,7 +9,11 @@ public class LibraryTest {
 
     @Test
     void create() {
-        Library library = new Library("library");
+        Library library = Library.builder()
+                .name("library")
+                .address("seoul")
+                .build();
         assertThat(library.getName()).isEqualTo("library");
+        assertThat(library.getAddress()).isEqualTo("seoul");
     }
 }
