@@ -14,16 +14,13 @@ public class BookService {
 
     private final LibraryRepository libraryRepository;
     private final BookRepository bookRepository;
-    private final MemberRepository memberRepository;
-    private final AdminRepository adminRepository;
+    private final UserRepository userRepository;
     private final BorrowedBookRepository borrowedBookRepository;
 
-
-    public BookService(LibraryRepository libraryRepository, BookRepository bookRepository, MemberRepository memberRepository, AdminRepository adminRepository, BorrowedBookRepository borrowedBookRepository) {
+    public BookService(LibraryRepository libraryRepository, BookRepository bookRepository, UserRepository userRepository, BorrowedBookRepository borrowedBookRepository) {
         this.libraryRepository = libraryRepository;
         this.bookRepository = bookRepository;
-        this.memberRepository = memberRepository;
-        this.adminRepository = adminRepository;
+        this.userRepository = userRepository;
         this.borrowedBookRepository = borrowedBookRepository;
     }
 
@@ -56,15 +53,22 @@ public class BookService {
     }
 
 
-    //1. 책의 id로 BookRepository에서 불러오기, findOne() 호출
-    //2. 사용자가 Admin인지, Member인지 Instance 확인후에 각자의 Repository에서 findOne()을 해오기
-    //3. BorrowBook(book, member, )
-    public void borrowBook(Book book, User user) {
+    public BorrowedBook borrowBook(Book book, User user) {
+        if(findBorrowedBooks(user.getId()).size() >= 5){
+            throw new IllegalArgumentException("빌린 책의 권수가 5권이 넘습니다.");
+        }
 
-        BorrowedBook borrowedBook = new BorrowedBook(book, user, new Date());
+        Book findBook = findOne(book.getId());
+        User findUser = userRepository.findById(user.getId()).orElse(null);
+        BorrowedBook borrowedBook = new BorrowedBook(findBook, findUser, new Date());
         borrowedBookRepository.save(borrowedBook);
-        bookRepository.deleteById(book.getId());
+        bookRepository.deleteById(findBook.getId());
 
+        return borrowedBook;
+    }
+
+    public List<BorrowedBook> findBorrowedBooks(String userId){
+        return borrowedBookRepository.findByUserId(userId);
     }
 
 

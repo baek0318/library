@@ -14,8 +14,6 @@ import javax.persistence.Id;
 public class Admin extends User{
 
     public Admin(String id, String password, String name) {
-        this.id = id;
-        this.password = password;
-        this.name = name;
+        super(id, password, name);
     }
 }

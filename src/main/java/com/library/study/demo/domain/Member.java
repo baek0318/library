@@ -11,12 +11,10 @@ import javax.persistence.Id;
 @Getter
 @NoArgsConstructor
 @Setter
+@Entity
 public class Member extends User {
 
-
-    public Member(String id, String password, String name) {
-        this.id = id;
-        this.password = password;
-        this.name = name;
+    public Member(String id, String password, String name){
+        super(id, password, name);
     }
 }
