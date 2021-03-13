@@ -41,4 +41,21 @@ public class Book {
         this.author = author;
         this.ISBN = ISBN;
     }
+
+    public BookDto.Response toResponseDto() {
+        return BookDto.Response.builder()
+                .id(id)
+                .title(title)
+                .author(author)
+                .ISBN(ISBN)
+                .build();
+    }
+
+    public void registerBook(Library library) {
+        if (this.library != null) {
+            this.library.getBooks().remove(this);
+        }
+        this.library = library;
+        library.getBooks().add(this);
+    }
 }
