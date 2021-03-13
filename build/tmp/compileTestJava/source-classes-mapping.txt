@@ -4,13 +4,13 @@ com/library/study/demo/repository/UserRepositoryTest.java
  com.library.study.demo.repository.UserRepositoryTest
 com/library/study/demo/service/AuthServiceTest.java
  com.library.study.demo.service.AuthServiceTest
-com/library/study/demo/controller/AuthControllerTest.java
- com.library.study.demo.controller.AuthControllerTest
-com/library/study/demo/controller/LibraryControllerTest.java
- com.library.study.demo.controller.LibraryControllerTest
 com/library/study/demo/domain/LibraryTest.java
  com.library.study.demo.domain.LibraryTest
+com/library/study/demo/controller/AuthControllerTest.java
+ com.library.study.demo.controller.AuthControllerTest
 com/library/study/demo/domain/BookTest.java
  com.library.study.demo.domain.BookTest
 com/library/study/demo/service/LibraryServiceTest.java
  com.library.study.demo.service.LibraryServiceTest
+com/library/study/demo/controller/LibraryControllerTest.java
+ com.library.study.demo.controller.LibraryControllerTest

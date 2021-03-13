@@ -89,8 +89,28 @@ public class LibraryServiceTest {
         given(libraryRepository.findAll()).willReturn(
                 libraryList
         );
-        List<LibraryDto.Response> findList = libraryService.findall();
+        List<LibraryDto.Response> findList = libraryService.findAll();
         assertThat(findList.size()).isEqualTo(libraryList.size());
+    }
+
+    @Test
+    void 도서관하나검색_정상() {
+        LibraryDto.Request reqDto = LibraryDto.Request.builder()
+                .address("testaddress")
+                .name("testLibName")
+                .build();
+        given(libraryRepository.findById(any())).willReturn(
+                Optional.of(reqDto.toEntity())
+        );
+        LibraryDto.Response resDto = libraryService.find(1L);
+        assertThat(resDto.getName()).isEqualTo(reqDto.getName());
+        assertThat(resDto.getAddress()).isEqualTo(reqDto.getAddress());
+    }
+
+    // TODO :: delete 서비스 테스트 구글링...
+    @Test
+    void 도서관제거_정상() {
+
     }
 }
 

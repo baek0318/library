@@ -3,9 +3,9 @@ package com.library.study.demo.library;
 import com.library.study.demo.library.dto.LibraryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
 
-import javax.transaction.Transactional;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
+
 public class LibraryService {
     private final LibraryRepository libraryRepository;
 
@@ -36,8 +38,21 @@ public class LibraryService {
         return library.toResponseDto();
     }
 
-    public List<LibraryDto.Response> findall() {
+    public LibraryDto.Response find(Long libraryId) {
+        Library library = libraryRepository.findById(libraryId)
+                .orElseThrow(() -> new RuntimeException("해당 도서관이 존재하지 않습니다."));
+        return library.toResponseDto();
+    }
+
+    public List<LibraryDto.Response> findAll() {
         return libraryRepository.findAll().stream()
                 .map(Library::toResponseDto).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long libraryId) {
+        Library library = libraryRepository.findById(libraryId)
+                .orElseThrow(() -> new RuntimeException("해당 도서관이 존재하지 않습니다."));
+        libraryRepository.delete(library);
     }
 }

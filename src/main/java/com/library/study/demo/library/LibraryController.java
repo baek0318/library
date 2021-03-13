@@ -32,20 +32,28 @@ public class LibraryController {
                 .body(resDto);
     }
 
-    //    @GetMapping("/librarys/{id}")
-//    public ResponseEntity<LibraryDto.Response> find(@PathVariable String libraryId){
-//
-//    }
+    @GetMapping("/librarys/{id}")
+    public ResponseEntity<LibraryDto.Response> find(@PathVariable("id") Long libraryId) {
+        LibraryDto.Response resDto = libraryService.find(libraryId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(resDto);
+    }
+
     // TODO :: param 지원
     @GetMapping("/librarys")
     public ResponseEntity<List<LibraryDto.Response>> findall() {
-        List<LibraryDto.Response> resDtoList = libraryService.findall();
+        List<LibraryDto.Response> resDtoList = libraryService.findAll();
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(resDtoList);
     }
-//    @DeleteMapping("/librarys/{id}")
-//    public ResponseEntity<LibraryDto.Response> remove(@PathVariable String libraryId){
-//
-//    }
+
+    @DeleteMapping("/librarys/{id}")
+    public ResponseEntity<LibraryDto.Response> remove(@PathVariable("id") Long libraryId) {
+        libraryService.delete(libraryId);
+        return ResponseEntity.ok()
+                .build();
+    }
+
 }

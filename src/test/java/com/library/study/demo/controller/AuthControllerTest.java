@@ -38,12 +38,11 @@ public class AuthControllerTest {
                 .role(role)
                 .build();
 
-
         SignUpResDto resDto =  webTestClient.post()
                 .uri("/api/signup")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(reqDto),SignUpReqDto.class)
+                .body(Mono.just(reqDto), SignUpReqDto.class)
                 .exchange()
                 .expectStatus().isCreated()
                 .expectHeader().contentType(MediaType.APPLICATION_JSON)
@@ -52,8 +51,9 @@ public class AuthControllerTest {
                 .getResponseBody();
         assertThat(resDto.getId()).isEqualTo(1L);
     }
+
     @Test
-    void 회원가입_중복(){
+    void 회원가입_중복() {
 
     }
 }
