@@ -1,13 +1,10 @@
 package com.library.study.demo.library.dto;
 
-import com.library.study.demo.book.Book;
 import com.library.study.demo.library.Library;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 public class LibraryDto {
 
@@ -36,7 +33,6 @@ public class LibraryDto {
         private Long id;
         private String name;
         private String address;
-        private List<Book> Books;
 
         @Builder
         Response(Long id, String name, String address) {

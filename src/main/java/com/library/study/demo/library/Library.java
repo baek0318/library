@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -25,7 +25,7 @@ public class Library {
     private String address;
 
     @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
-    private List<Book> Books = new ArrayList<Book>();
+    private Set<Book> books = new HashSet<>();
 
     @Builder
     Library(String name, String address) {
@@ -40,12 +40,11 @@ public class Library {
                 .address(address)
                 .build();
     }
-//    public void update(LibraryDto.Request reqDto){
-//        if(!reqDto.getAddress().equals("")){
-//            address=reqDto.getAddress();
-//        }
-//        if(!reqDto.getName().equals("")){
-//            name=reqDto.getName();
-//        }
-//    }
+
+    public void registerBook(Book book) {
+        if (book != null) {
+            books.add(book);
+        }
+        book.register(this);
+    }
 }

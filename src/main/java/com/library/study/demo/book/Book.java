@@ -52,11 +52,10 @@ public class Book {
                 .build();
     }
 
-    public void registerBook(Library library) {
+    public void register(Library library) {
         if (this.library != null) {
             this.library.getBooks().remove(this);
         }
         this.library = library;
-        library.getBooks().add(this);
     }
 }
