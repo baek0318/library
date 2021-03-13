@@ -9,20 +9,20 @@ public class BookDto {
     public static class Request {
         private String title;
         private String author;
-        private String ISBN;
+        private String isbn;
 
         @Builder
-        public Request(String title, String author, String ISBN) {
+        public Request(String title, String author, String isbn) {
             this.title = title;
             this.author = author;
-            this.ISBN = ISBN;
+            this.isbn = isbn;
         }
 
         public Book toEntity() {
             return Book.builder()
                     .title(title)
                     .author(author)
-                    .ISBN(ISBN)
+                    .ISBN(isbn)
                     .build();
         }
     }
@@ -34,15 +34,15 @@ public class BookDto {
         private Long id;
         private String title;
         private String author;
-        private String ISBN;
+        private String isbn;
         private Long libraryId;
 
         @Builder
-        public Response(Long id, String title, String author, String ISBN) {
+        public Response(Long id, String title, String author, String isbn) {
             this.id = id;
             this.title = title;
             this.author = author;
-            this.ISBN = ISBN;
+            this.isbn = isbn;
         }
 
     }

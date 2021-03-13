@@ -14,6 +14,7 @@ public class BookService {
     private final BookRepository bookRepository;
     private final LibraryRepository libraryRepository;
 
+    @Transactional
     public BookDto.Response create(Long libraryId, BookDto.Request reqDto) {
         Library library = libraryRepository.findById(libraryId)
                 .orElseThrow(() -> new RuntimeException("해당 도서관이 존재하지 않습니다."));

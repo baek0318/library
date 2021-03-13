@@ -1,5 +1,6 @@
 package com.library.study.demo.controller;
 
+import com.library.study.demo.book.Book;
 import com.library.study.demo.book.dto.BookDto;
 import com.library.study.demo.library.dto.LibraryDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,7 @@ public class BookControllerTest {
     private static final String BOOK_TEST_TITLE = "testBookTitle";
     private static final String BOOK_TEST_AUTHOR = "testBookAuthor";
     private static final String BOOK_TEST_ISBN = "testBookISBN";
+
     @Autowired
     private WebTestClient webTestClient;
     private Long libraryId;
@@ -45,10 +47,9 @@ public class BookControllerTest {
         BookDto.Request reqDto = BookDto.Request.builder()
                 .title(BOOK_TEST_TITLE)
                 .author(BOOK_TEST_AUTHOR)
-                .ISBN(BOOK_TEST_ISBN)
+                .isbn(BOOK_TEST_ISBN)
                 .build();
-
-        BookDto.Response resDto = webTestClient.post().uri("/api/librarys/" + libraryId.toString() + "/books")
+        BookDto.Response resDto = webTestClient.post().uri("/api/librarys/{id}/books", libraryId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(reqDto), BookDto.Request.class)
@@ -58,10 +59,9 @@ public class BookControllerTest {
                 .expectBody(BookDto.Response.class)
                 .returnResult()
                 .getResponseBody();
-
         assertThat(resDto.getTitle()).isEqualTo(reqDto.getTitle());
         assertThat(resDto.getAuthor()).isEqualTo(reqDto.getAuthor());
-        assertThat(resDto.getISBN()).isEqualTo(reqDto.getISBN());
+        assertThat(resDto.getIsbn()).isEqualTo(reqDto.getIsbn());
     }
 
     @Test

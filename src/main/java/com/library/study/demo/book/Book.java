@@ -47,7 +47,7 @@ public class Book {
                 .id(id)
                 .title(title)
                 .author(author)
-                .ISBN(ISBN)
+                .isbn(ISBN)
                 .build();
     }
 
