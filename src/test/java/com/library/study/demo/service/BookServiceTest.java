@@ -130,7 +130,7 @@ public class BookServiceTest {
 
     @Test
     void borrowedBookMemberTest(){
-        BorrowedBook book1 = bookService.borrowBook(book, member);
+        BorrowedBook book1 = bookService.borrowBook(book.getTitle(), member.getId());
         verify(borrowedBookRepository, times(1)).save(any());
         verify(bookRepository, times(1)).deleteById(any());
         assertThat(book1.getBook().getTitle(), is(book.getTitle()));
@@ -139,7 +139,7 @@ public class BookServiceTest {
 
     @Test
     void borrowedBookAdminTest(){
-        BorrowedBook book2 = bookService.borrowBook(book, admin);
+        BorrowedBook book2 = bookService.borrowBook(book.getTitle(), admin.getId());
         verify(borrowedBookRepository, times(1)).save(any());
         verify(bookRepository, times(1)).deleteById(any());
         assertThat(book2.getBook().getTitle(),is(book.getTitle()));
@@ -153,17 +153,16 @@ public class BookServiceTest {
 
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    bookService.borrowBook(book, testMember);
+                    bookService.borrowBook(book.getTitle(), testMember.getId());
                 }).withMessageMatching("빌린 책의 권수가 5권이 넘습니다.");
     }
 
     @Test
     void validateIsBorrowedFailTest(){
-        book.setBorrowed(true);
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    bookService.borrowBook(book, member);
-                }).withMessageMatching("이미 빌려준 책입니다.");
+                    bookService.borrowBook("책제목3", member.getId());
+                }).withMessageMatching("빌릴 수 있는 책이 없습니다.");
     }
 
 

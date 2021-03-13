@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -44,11 +45,10 @@ public class BookRepositoryTest {
         assertThat(saveBook.getTitle(), is(book.getTitle()));
         assertThat(saveBook.getAuthor(), is(book.getAuthor()));
         List<Book> bookList = bookRepository.findAll();
-        assertThat(bookList.size(), is(1));
 
         bookRepository.deleteById(saveBook.getId());
-        bookList = bookRepository.findAll();
-        assertThat(bookList.size(), is(0));
+        List<Book> deleteBookList = bookRepository.findAll();
+        assertThat(deleteBookList.size(), is(bookList.size() - 1));
          //Exception
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
@@ -84,6 +84,16 @@ public class BookRepositoryTest {
         Book updateBook = bookRepository.findById(saveBook.getId()).orElse(null);
 
         assertThat(updateBook.getTitle(), is(changeTitle));
+    }
+
+    @Test
+    void findAllByTitleANDIsBorrowed(){
+        List<Book> books = bookRepository.findAllByTitleAndIsBorrowed("책제목4", false);
+        assertThat(books.size(), is(2));
+        books.forEach(book ->{
+            assertThat(book, is(instanceOf(Book.class)));
+            assertThat(book.getAuthor(), is("작가4"));
+        });
     }
 
 

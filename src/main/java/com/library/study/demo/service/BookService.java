@@ -59,16 +59,17 @@ public class BookService {
     }
 
 
-    public BorrowedBook borrowBook(Book book, User user) {
-        if(book.isBorrowed() == true){
-            throw new IllegalArgumentException("이미 빌려준 책입니다.");
+    public BorrowedBook borrowBook(String bookTitle, String userId) {
+        List<Book> findBookList = bookRepository.findAllByTitleAndIsBorrowed(bookTitle, false);
+        if (findBookList.size() == 0) {
+            throw new IllegalArgumentException("빌릴 수 있는 책이 없습니다.");
         }
-        if (findBorrowedBooks(user.getId()).size() >= 5) {
+        if (findBorrowedBooks(userId).size() >= 5) {
             throw new IllegalArgumentException("빌린 책의 권수가 5권이 넘습니다.");
         }
 
-        Book findBook = findOne(book.getId());
-        User findUser = userRepository.findById(user.getId()).orElse(null);
+        Book findBook = findBookList.get(0);
+        User findUser = userRepository.findById(userId).orElse(null);
         BorrowedBook borrowedBook = new BorrowedBook(findBook, findUser, new Date());
         borrowedBookRepository.save(borrowedBook);
         findBook.setBorrowed(true);

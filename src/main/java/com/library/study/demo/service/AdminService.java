@@ -30,6 +30,10 @@ public class AdminService implements UserService{
         return adminRepository.save(admin);
     }
 
+    public Admin findById(String id){
+        return adminRepository.findAdminById(id).orElseThrow(() -> new IllegalArgumentException("해당하는 아이디가 없습니다."));
+    }
+
     /*public Admin findOne(String id) {
         Admin borrower = adminRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 사용자입니다."));
         return borrower;
