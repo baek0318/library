@@ -18,7 +18,6 @@ public class BookController {
     public ResponseEntity<BookDto.Response> create(@PathVariable("id") Long id,
                                                    @RequestBody BookDto.Request reqDto) {
         BookDto.Response bookDto = bookService.create(id, reqDto);
-        bookDto.setLibraryId(id);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(bookDto);

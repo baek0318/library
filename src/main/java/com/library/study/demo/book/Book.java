@@ -25,7 +25,7 @@ public class Book {
     private String author;
 
     @Column(nullable = false)
-    private String ISBN;
+    private String isbn;
 
     @JoinColumn(name = "USER_ID")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,10 +36,10 @@ public class Book {
     private Library library;
 
     @Builder
-    public Book(String title, String author, String ISBN) {
+    public Book(String title, String author, String isbn) {
         this.title = title;
         this.author = author;
-        this.ISBN = ISBN;
+        this.isbn = isbn;
     }
 
     public BookDto.Response toResponseDto() {
@@ -47,7 +47,8 @@ public class Book {
                 .id(id)
                 .title(title)
                 .author(author)
-                .isbn(ISBN)
+                .isbn(isbn)
+                .library(library.toResponseDto())
                 .build();
     }
 

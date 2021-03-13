@@ -12,11 +12,11 @@ public class BookTest {
         Book book = Book.builder()
                 .title("Tobi")
                 .author("tobi")
-                .ISBN("101010")
+                .isbn("101010")
                 .build();
 
         assertThat(book.getTitle()).isEqualTo("Tobi");
         assertThat(book.getAuthor()).isEqualTo("tobi");
-        assertThat(book.getISBN()).isEqualTo("101010");
+        assertThat(book.getIsbn()).isEqualTo("101010");
     }
 }
