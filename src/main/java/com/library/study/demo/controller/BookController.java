@@ -4,6 +4,10 @@ import com.library.study.demo.domain.*;
 import com.library.study.demo.service.AdminService;
 import com.library.study.demo.service.BookService;
 import com.library.study.demo.service.MemberService;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,13 +67,11 @@ public class BookController {
     }
 
     @PostMapping("borrow")
-    public ResponseEntity<BorrowedBook> borrow(@RequestParam String userId, @RequestBody String bookTitle) {
-        //책 이름을 받아서, 이 책들을 조회하고, 그중에서 isBorrowed false인애만 찾고싶음!!
-        //책 정보를 다 받아서, isborrowed, 못빌리게 함
-
-
-        
-//        bookService.borrowBook(bookService.findByTitle(),userId);
-        return null;
+    public ResponseEntity<BorrowedBookDTO> borrow(@RequestBody BorrowDTO borrowDTO) {
+        return ResponseEntity.ok(new BorrowedBookDTO(
+                bookService.borrowBook(borrowDTO.getBookTitle(), borrowDTO.getUserId())
+        ));
     }
 }
+
+

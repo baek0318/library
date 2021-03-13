@@ -33,6 +33,7 @@ public class BookControllerTest {
     private String deleteUri = "/book/delete";
     private String findUri = "/book/find/";
     private String updateUri = "/book/update";
+    private String borrowUri = "/book/borrow";
 
 
     @BeforeAll
@@ -90,5 +91,14 @@ public class BookControllerTest {
         ResponseEntity<String> responseEntity = testTemplate.postForEntity(resgisterUri, bookentity, String.class);
         assertThat(responseEntity.getStatusCode(), is(HttpStatus.FORBIDDEN));
         assertThat(responseEntity.getBody(), is(ErrorMessage.notAdminMessage));
+    }
+
+    @Test
+    void borrowTest(){
+        BorrowDTO borrowDTO = new BorrowDTO("id1", "책제목1");
+        ResponseEntity<BorrowedBookDTO> responseEntity = testTemplate.postForEntity(borrowUri, borrowDTO, BorrowedBookDTO.class);
+
+        assertThat(responseEntity.getBody().getUserId(), is(borrowDTO.getUserId()));
+        assertThat(responseEntity.getBody().getTitle(), is(borrowDTO.getBookTitle()));
     }
 }

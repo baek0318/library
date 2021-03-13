@@ -10,3 +10,11 @@ INSERT INTO book(id, title, author, library_id) VALUES(null, '책제목4', '작�
 INSERT INTO book(id, title, author, library_id, is_borrowed) VALUES(null, '책제목4', '작가4', 2L, false);
 INSERT INTO book(id, title, author, library_id, is_borrowed) VALUES(null, '책제목4', '작가4', 2L, true);
 INSERT INTO book(id, title, author, library_id, is_borrowed) VALUES(null, '책제목4', '작가4', 2L, true);
+
+
+INSERT INTO member(id, password, name) VALUES('id1', 'pwd1', 'name1');
+INSERT INTO member(id, password, name) VALUES('id2', 'pwd2', 'name2');
+INSERT INTO member(id, password, name) VALUES('id3', 'pwd3', 'name3');
+
+INSERT INTO admin(id, password, name) VALUES('id4', 'pwd4', 'name4');
+INSERT INTO admin(id, password, name) VALUES('id5', 'pwd5', 'name5');
