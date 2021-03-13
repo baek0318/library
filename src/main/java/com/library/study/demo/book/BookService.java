@@ -2,7 +2,7 @@ package com.library.study.demo.book;
 
 import com.library.study.demo.book.dto.BookDto;
 import com.library.study.demo.library.Library;
-import com.library.study.demo.library.LibraryRepository;
+import com.library.study.demo.library.LibraryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,15 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = false)
 public class BookService {
     private final BookRepository bookRepository;
-    private final LibraryRepository libraryRepository;
+    private final LibraryService libraryService;
 
     @Transactional
     public BookDto.Response create(Long libraryId, BookDto.Request reqDto) {
-        Library library = libraryRepository.findById(libraryId)
-                .orElseThrow(() -> new RuntimeException("해당 도서관이 존재하지 않습니다."));
-        Book book = reqDto.toEntity();
-        bookRepository.save(book);
-        book.registerBook(library);
+        Library library = libraryService.findById(libraryId);
+        Book book = bookRepository.save(reqDto.toEntity());
+        library.registerBook(book);
         return book.toResponseDto();
     }
 }

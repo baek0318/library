@@ -39,9 +39,7 @@ public class LibraryService {
     }
 
     public LibraryDto.Response find(Long libraryId) {
-        Library library = libraryRepository.findById(libraryId)
-                .orElseThrow(() -> new RuntimeException("해당 도서관이 존재하지 않습니다."));
-        return library.toResponseDto();
+        return findById(libraryId).toResponseDto();
     }
 
     public List<LibraryDto.Response> findAll() {
@@ -54,5 +52,12 @@ public class LibraryService {
         Library library = libraryRepository.findById(libraryId)
                 .orElseThrow(() -> new RuntimeException("해당 도서관이 존재하지 않습니다."));
         libraryRepository.delete(library);
+    }
+
+
+    public Library findById(Long libraryId) {
+        Library library = libraryRepository.findById(libraryId)
+                .orElseThrow(() -> new RuntimeException("해당 도서관이 존재하지 않습니다."));
+        return library;
     }
 }
