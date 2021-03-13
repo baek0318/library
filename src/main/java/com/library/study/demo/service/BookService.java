@@ -37,24 +37,24 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book edit(Book book, Long libraryId){
+    public Book edit(Book book, Long libraryId) {
         Book editBook = findOne(book.getId());
         editBook.setTitle(book.getTitle());
         editBook.setAuthor(book.getAuthor());
-        if(book.getLibrary().getId() != libraryId){
+        if (book.getLibrary().getId() != libraryId) {
             Library library = libraryRepository.findById(libraryId).orElseThrow(() -> new IllegalArgumentException("없는 도서관 아이디입니다."));
             editBook.setLibrary(library);
         }
         return editBook;
     }
 
-    public Book findOne(Long bookId){
+    public Book findOne(Long bookId) {
         return bookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 책 아이디입니다."));
     }
 
 
     public BorrowedBook borrowBook(Book book, User user) {
-        if(findBorrowedBooks(user.getId()).size() >= 5){
+        if (findBorrowedBooks(user.getId()).size() >= 5) {
             throw new IllegalArgumentException("빌린 책의 권수가 5권이 넘습니다.");
         }
 
@@ -67,7 +67,7 @@ public class BookService {
         return borrowedBook;
     }
 
-    public List<BorrowedBook> findBorrowedBooks(String userId){
+    public List<BorrowedBook> findBorrowedBooks(String userId) {
         return borrowedBookRepository.findByUserId(userId);
     }
 

@@ -1,5 +1,6 @@
 package com.library.study.demo.domain;
 
+import com.library.study.demo.controller.JoinDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,5 +16,9 @@ public class Admin extends User{
 
     public Admin(String id, String password, String name) {
         super(id, password, name);
+    }
+
+    public Admin(JoinDTO joinDTO) {
+        super(joinDTO.getId(), joinDTO.getPassword(), joinDTO.getName());
     }
 }
