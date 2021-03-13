@@ -12,9 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -34,6 +35,7 @@ public class BookControllerTest {
     private String findUri = "/book/find/";
     private String updateUri = "/book/update";
     private String borrowUri = "/book/borrow";
+    private String borrwListUri = "/book/borrows";
 
 
     @BeforeAll
@@ -100,5 +102,14 @@ public class BookControllerTest {
 
         assertThat(responseEntity.getBody().getUserId(), is(borrowDTO.getUserId()));
         assertThat(responseEntity.getBody().getTitle(), is(borrowDTO.getBookTitle()));
+    }
+
+    @Test
+    void showBorrowedListTest(){
+        HttpHeaders userHeaders = new HttpHeaders();
+        userHeaders.set("userId", "id1");
+        ResponseEntity<List> responseEntity = testTemplate.exchange(borrwListUri, HttpMethod.GET, new HttpEntity<>(userHeaders), List.class);
+        assertThat(responseEntity.getStatusCode(), is(HttpStatus.OK));
+        assertThat(responseEntity.getBody().size(), is(3));
     }
 }

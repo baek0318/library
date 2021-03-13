@@ -7,6 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
 
 @NoArgsConstructor
 @Getter
@@ -26,4 +32,6 @@ public class BorrowedBookDTO {
         this.userId = borrowedBook.getUser().getId();
         this.bDate = borrowedBook.getBDate();
     }
+
+
 }

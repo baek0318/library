@@ -11,6 +11,12 @@ import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("book")
 public class BookController {
@@ -72,6 +78,19 @@ public class BookController {
                 bookService.borrowBook(borrowDTO.getBookTitle(), borrowDTO.getUserId())
         ));
     }
+
+    @GetMapping("borrows")
+    public ResponseEntity<List<BorrowedBookDTO>> showBorrowedList(@RequestHeader(value = "userId") String userId){
+        List<BorrowedBook> borrowedBooks = bookService.findBorrowedBooks(userId);
+
+        return ResponseEntity.ok(
+                borrowedBooks.stream()
+                        .map(borrowedBook -> new BorrowedBookDTO(borrowedBook))
+                        .collect(Collectors.toList()));
+
+    }
+
+
 }
 
 

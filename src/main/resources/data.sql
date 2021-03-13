@@ -18,3 +18,8 @@ INSERT INTO member(id, password, name) VALUES('id3', 'pwd3', 'name3');
 
 INSERT INTO admin(id, password, name) VALUES('id4', 'pwd4', 'name4');
 INSERT INTO admin(id, password, name) VALUES('id5', 'pwd5', 'name5');
+
+
+INSERT INTO borrowed_book(id, book_id, user_id, b_date) VALUES(null, 1L, 'id1', null);
+INSERT INTO borrowed_book(id, book_id, user_id, b_date) VALUES(null, 2L, 'id1', null);
+INSERT INTO borrowed_book(id, book_id, user_id, b_date) VALUES(null, 4L, 'id1', null);
