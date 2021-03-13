@@ -94,7 +94,6 @@ public class LibraryControllerTest {
         webTestClient.delete().uri("/api/librarys/" + libraryId)
                 .exchange()
                 .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
                 .expectBody()
                 .returnResult();
     }
