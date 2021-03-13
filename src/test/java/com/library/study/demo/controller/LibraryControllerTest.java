@@ -91,12 +91,26 @@ public class LibraryControllerTest {
 
     @Test
     void 도서관삭제테스트() {
-
+        webTestClient.delete().uri("/api/librarys/" + libraryId)
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBody()
+                .returnResult();
     }
 
     @Test
     void 도서관하나조회테스트() {
+        LibraryDto.Response resDto = webTestClient.get().uri("/api/librarys/" + libraryId)
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBody(LibraryDto.Response.class)
+                .returnResult()
+                .getResponseBody();
 
+        assertThat(resDto).isNotNull();
+        assertThat(resDto.getName()).isEqualTo(LIBRARY_TEST_NAME);
     }
 
     Long createLibraryNameOf(String name) {
