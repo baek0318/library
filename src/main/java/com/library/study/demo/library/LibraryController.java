@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -30,14 +31,19 @@ public class LibraryController {
                 .status(HttpStatus.OK)
                 .body(resDto);
     }
-//    @GetMapping("/librarys/{id}")
+
+    //    @GetMapping("/librarys/{id}")
 //    public ResponseEntity<LibraryDto.Response> find(@PathVariable String libraryId){
 //
 //    }
-//    @GetMapping("/librarys")
-//    public ResponseEntity<LibraryDto.Response> findall(@PathVariable String libraryId){
-//
-//    }
+    // TODO :: param 지원
+    @GetMapping("/librarys")
+    public ResponseEntity<List<LibraryDto.Response>> findall() {
+        List<LibraryDto.Response> resDtoList = libraryService.findall();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(resDtoList);
+    }
 //    @DeleteMapping("/librarys/{id}")
 //    public ResponseEntity<LibraryDto.Response> remove(@PathVariable String libraryId){
 //

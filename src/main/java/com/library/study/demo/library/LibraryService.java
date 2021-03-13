@@ -7,7 +7,9 @@ import org.springframework.util.ReflectionUtils;
 
 import javax.transaction.Transactional;
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +34,10 @@ public class LibraryService {
             ReflectionUtils.setField(field, library, v);
         });
         return library.toResponseDto();
+    }
+
+    public List<LibraryDto.Response> findall() {
+        return libraryRepository.findAll().stream()
+                .map(Library::toResponseDto).collect(Collectors.toList());
     }
 }

@@ -14,8 +14,8 @@ public class LibraryDto {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Request {
-        private String name = "";
-        private String address = "";
+        private String name;
+        private String address;
 
         @Builder
         Request(String name, String address) {
@@ -30,7 +30,6 @@ public class LibraryDto {
                     .build();
         }
     }
-
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Response {
