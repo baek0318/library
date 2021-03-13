@@ -27,7 +27,7 @@ public class BookRepositoryTest {
     private Book book;
 
     @BeforeAll
-    public void setUP() {
+    public void setUp() {
         Library library = new Library();
         Library saveLibrary = libraryRepository.save(library);
 
@@ -61,6 +61,14 @@ public class BookRepositoryTest {
         Book saveBook = saveBook();
         Book findBook = bookRepository.findById(saveBook.getId()).orElse(null);
         assertThat(findBook.getId(), is(saveBook.getId()));
+    }
+
+    @Test
+    void findByIdBookTest(){
+        Book saveBook = saveBook();
+        Book findBook = bookRepository.findByTitle(saveBook.getTitle()).orElse(null);
+        assertThat(findBook.getId(), is(saveBook.getId()));
+        assertThat(findBook.getAuthor(), is(saveBook.getAuthor()));
     }
 
 

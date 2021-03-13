@@ -12,6 +12,8 @@ import java.util.List;
 @Transactional
 public class BookService {
 
+
+
     private final LibraryRepository libraryRepository;
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
@@ -41,7 +43,7 @@ public class BookService {
         Book editBook = findOne(book.getId());
         editBook.setTitle(book.getTitle());
         editBook.setAuthor(book.getAuthor());
-        if (book.getLibrary().getId() != libraryId) {
+        if (editBook.getLibrary().getId() != libraryId) {
             Library library = libraryRepository.findById(libraryId).orElseThrow(() -> new IllegalArgumentException("없는 도서관 아이디입니다."));
             editBook.setLibrary(library);
         }
@@ -52,8 +54,15 @@ public class BookService {
         return bookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 책 아이디입니다."));
     }
 
+    public Book findByTitle(String title){
+        return bookRepository.findByTitle(title).orElseThrow(() -> new IllegalArgumentException("해당하는 책 제목이 없습니다."));
+    }
+
 
     public BorrowedBook borrowBook(Book book, User user) {
+        if(book.isBorrowed() == true){
+            throw new IllegalArgumentException("이미 빌려준 책입니다.");
+        }
         if (findBorrowedBooks(user.getId()).size() >= 5) {
             throw new IllegalArgumentException("빌린 책의 권수가 5권이 넘습니다.");
         }
@@ -62,7 +71,7 @@ public class BookService {
         User findUser = userRepository.findById(user.getId()).orElse(null);
         BorrowedBook borrowedBook = new BorrowedBook(findBook, findUser, new Date());
         borrowedBookRepository.save(borrowedBook);
-        bookRepository.deleteById(findBook.getId());
+        findBook.setBorrowed(true);
 
         return borrowedBook;
     }

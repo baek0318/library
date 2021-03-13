@@ -3,6 +3,7 @@ package com.library.study.demo.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class BorrowedBook {
     @OneToOne
     private User user;
     @Temporal(TemporalType.DATE)
+    @CreationTimestamp
     private Date bDate;
 
     public BorrowedBook(Book book, User user, Date bDate) {

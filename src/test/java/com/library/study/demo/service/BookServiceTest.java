@@ -147,7 +147,7 @@ public class BookServiceTest {
     }
 
     @Test
-    void borrowedFailTest(){
+    void validateOverBorrowedFailTest(){
         Member testMember = new Member("newmem", "newmempass", "newmemname");
         when(borrowedBookRepository.findByUserId(testMember.getId())).thenReturn(borrowedBookList);
 
@@ -155,6 +155,15 @@ public class BookServiceTest {
                 .isThrownBy(() -> {
                     bookService.borrowBook(book, testMember);
                 }).withMessageMatching("빌린 책의 권수가 5권이 넘습니다.");
+    }
+
+    @Test
+    void validateIsBorrowedFailTest(){
+        book.setBorrowed(true);
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    bookService.borrowBook(book, member);
+                }).withMessageMatching("이미 빌려준 책입니다.");
     }
 
 

@@ -18,6 +18,7 @@ public class UserController {
 
     public final AdminService adminService;
     public final MemberService memberService;
+    public final static String joinMessage = "회원가입 성공";
 
     public UserController(AdminService adminService, MemberService memberService) {
         this.adminService = adminService;
@@ -35,6 +36,6 @@ public class UserController {
             message += "Member";
         }
 
-        return ResponseEntity.ok(message+"회원가입 성공");
+        return ResponseEntity.ok(message+joinMessage);
     }
 }
