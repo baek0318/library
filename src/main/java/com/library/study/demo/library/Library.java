@@ -47,4 +47,8 @@ public class Library {
         }
         book.register(this);
     }
+
+    public void unRegisterBook(Book book) {
+        books.remove(book);
+    }
 }
