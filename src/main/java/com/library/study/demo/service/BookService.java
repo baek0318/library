@@ -6,6 +6,8 @@ import com.library.study.demo.domain.Book;
 import com.library.study.demo.domain.BookInfo;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class BookService {
 
@@ -17,13 +19,9 @@ public class BookService {
         this.bookInfoRepository = bookInfoRepository;
     }
 
+    @Transactional
     public Long save(Long bookInfoId) {
         BookInfo bookInfo = bookInfoRepository.findById(bookInfoId).orElseThrow(IllegalArgumentException::new);
         return bookRepository.save(new Book(bookInfo)).getId();
     }
 }
-
-//
-//bookinfo = 1
-//book = 1, 2, 3, 4 ,5, 6, 7, 8
-//borrow= 1, 2, 3, 4, 5, 6, 7,8
