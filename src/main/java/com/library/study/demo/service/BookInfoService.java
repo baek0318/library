@@ -1,6 +1,7 @@
 package com.library.study.demo.service;
 
 
+import com.library.study.demo.controller.dto.AuthorResponse;
 import com.library.study.demo.controller.dto.BookInfoListResponse;
 import com.library.study.demo.controller.dto.BookInfoResponse;
 import com.library.study.demo.dao.AuthorRepository;
@@ -31,8 +32,11 @@ public class BookInfoService {
     }
 
     @Transactional
-    public BookInfo getBookInfo(Long id) {
-        return bookInfoRepository.findById(id).orElse(null);
+    public BookInfoResponse getBookInfo(Long id) {
+
+        BookInfo bookInfo = bookInfoRepository.findById(id).orElse(null);
+
+        return new BookInfoResponse(bookInfo);
     }
 
     @Transactional
