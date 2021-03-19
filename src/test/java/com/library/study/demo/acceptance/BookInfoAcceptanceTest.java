@@ -3,6 +3,7 @@ package com.library.study.demo.acceptance;
 import com.library.study.demo.controller.dto.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,7 +52,8 @@ public class BookInfoAcceptanceTest {
 
     @Test
     void 책_정보_목록_테스트() {
-        ResponseEntity<BookInfoListResponse> responseEntity = restTemplate.getForEntity("/bookinfo/list", BookInfoListResponse.class);
+        ResponseEntity<BookInfoListResponse> responseEntity = restTemplate
+                .getForEntity("/bookinfo/list", BookInfoListResponse.class);
 
         Map<Long, String> map = new HashMap<>();
 
@@ -61,6 +63,18 @@ public class BookInfoAcceptanceTest {
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals("math", map.get(saveBookInfoResponse1.getId()));
         Assertions.assertEquals("math2", map.get(saveBookInfoResponse2.getId()));
+    }
+
+    @Test
+    @DisplayName("책 정보 가져오기 테스트")
+    void getBookInfoTest() {
+        ResponseEntity<BookInfoResponse> responseEntity = restTemplate
+                .getForEntity("/bookinfo?id=1",BookInfoResponse.class);
+
+        BookInfoResponse response = responseEntity.getBody();
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertEquals(1L, response.getId());
     }
 
     public static SaveBookInfoResponse 책_정보_생성됨(TestRestTemplate template, String bookInfoTitle, Long authorId) {
