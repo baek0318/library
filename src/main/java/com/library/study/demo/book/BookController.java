@@ -24,4 +24,30 @@ public class BookController {
                 .status(HttpStatus.CREATED)
                 .body(bookDto);
     }
+
+    @DeleteMapping("/librarys/{libraryId}/books/{bookId}")
+    public ResponseEntity<BookDto.Response> delete(@PathVariable("libraryId") Long libraryId,
+                                                   @PathVariable("bookId") Long bookId) {
+        bookService.delete(bookId, libraryId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .build();
+    }
+
+    @GetMapping("/librarys/{libraryId}/books/{bookId}")
+    public ResponseEntity<BookDto.Response> find(@PathVariable("libraryId") Long libraryId,
+                                                 @PathVariable("bookId") Long bookId) {
+        BookDto.Response bookDto = bookService.find(bookId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(bookDto);
+    }
+
+    @GetMapping("/librarys/{libraryId}/books")
+    public ResponseEntity<List<BookDto.Response>> findAll(@PathVariable("libraryId") Long libraryId) {
+        List<BookDto.Response> bookDtoList = bookService.findAll(libraryId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(bookDtoList);
+    }
 }

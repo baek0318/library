@@ -95,7 +95,18 @@ public class BookControllerTest {
 
     @Test
     void 책하나조회() {
+        BookDto.Response resDto = webTestClient.get().uri("/api/librarys/" + libraryId + "/books/" + bookId)
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBody(BookDto.Response.class)
+                .returnResult()
+                .getResponseBody();
 
+        assertThat(resDto).isNotNull();
+        assertThat(resDto.getTitle()).isEqualTo(BOOK_TEST_TITLE);
+        assertThat(resDto.getAuthor()).isEqualTo(BOOK_TEST_AUTHOR);
+        assertThat(resDto.getIsbn()).isEqualTo(BOOK_TEST_ISBN);
     }
 
     @Test

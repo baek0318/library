@@ -32,6 +32,9 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     private Library library;
 
+    @Enumerated(value = EnumType.STRING)
+    private BookStatus bookStatus = BookStatus.AVAILABLE;
+
     @Builder
     public Book(String title, String author, String isbn) {
         this.title = title;

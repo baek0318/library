@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = false)
+@Transactional(readOnly = true)
 public class BookService {
     private final BookRepository bookRepository;
     private final LibraryService libraryService;

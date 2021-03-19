@@ -50,9 +50,7 @@ public class BookServiceTest {
 
         BookDto.Response resDto = bookService.create(1L, reqDto);
 
-        assertThat(resDto.getTitle()).isEqualTo(reqDto.getTitle());
-        assertThat(resDto.getAuthor()).isEqualTo(reqDto.getAuthor());
-        assertThat(resDto.getIsbn()).isEqualTo(reqDto.getIsbn());
+        assertReqAndRes(reqDto, resDto);
     }
 
     //TODO :: 0318 서비스 삭제 테스트 알아볼것..
