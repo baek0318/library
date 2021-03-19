@@ -14,5 +14,5 @@ public class JoinDTO {
     private String id;
     private String password;
     private String name;
-    private boolean isAdmin;
+    private boolean admin;
 }
