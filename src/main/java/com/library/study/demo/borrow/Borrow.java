@@ -1,6 +1,7 @@
 package com.library.study.demo.borrow;
 
 import com.library.study.demo.book.Book;
+import com.library.study.demo.borrow.dto.BorrowDto;
 import com.library.study.demo.library.Library;
 import com.library.study.demo.user.User;
 import lombok.AccessLevel;
@@ -15,6 +16,11 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Borrow {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "BORROW_ID", nullable = false)
+    private Long id;
 
     @CreationTimestamp
     @Temporal(value = TemporalType.TIMESTAMP)
@@ -35,6 +41,13 @@ public class Borrow {
     @OneToOne(fetch = FetchType.LAZY)
     private Book book;
 
-    Borrow()
-
+    public BorrowDto.Response toResponseDto(Borrow borrow) {
+        return BorrowDto.Response.
+                builder()
+                .id(id)
+                .borrowDate(borrowDate)
+                .book(book.toResponseDto())
+                .user(user.toResponseDto())
+                .build();
+    }
 }

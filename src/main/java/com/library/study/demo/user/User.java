@@ -1,6 +1,7 @@
 package com.library.study.demo.user;
 
 import com.library.study.demo.book.Book;
+import com.library.study.demo.user.dto.UserDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,25 +18,37 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name="USER_ID",nullable = false)
+    @Column(name = "USER_ID", nullable = false)
     private Long id;
 
-    @Column(nullable=false)
-    private String loginid;
+    @Column(nullable = false)
+    private String loginId;
 
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String name;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Book> books = new ArrayList<Book>();
 
     @Builder
-    public User(String loginid, String password, Role role) {
-        this.loginid = loginid;
+    public User(String loginId, String password, String name, Role role) {
+        this.loginId = loginId;
+        this.name = name;
         this.password = password;
         this.role = role;
+    }
+
+    public UserDto.Response toResponseDto() {
+        return UserDto.Response.builder()
+                .id(id)
+                .name(name)
+                .loginId(loginId)
+                .build();
     }
 }

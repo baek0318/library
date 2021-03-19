@@ -18,7 +18,7 @@ public class Library {
 
     @Id
     @GeneratedValue
-    @Column(name = "LIBRARY_ID")
+    @Column(name = "LIBRARY_ID", nullable = false)
     private Long id;
 
     private String name;

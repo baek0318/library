@@ -2,7 +2,6 @@ package com.library.study.demo.book;
 
 import com.library.study.demo.book.dto.BookDto;
 import com.library.study.demo.library.Library;
-import com.library.study.demo.user.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +14,9 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Book {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
+    @Column(name = "BOOK_ID", nullable = false)
     private Long id;
 
     @Column(nullable = false)
@@ -26,10 +27,6 @@ public class Book {
 
     @Column(nullable = false)
     private String isbn;
-
-    @JoinColumn(name = "USER_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
 
     @JoinColumn(name = "LIBRARY_ID")
     @ManyToOne(fetch = FetchType.LAZY)

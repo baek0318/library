@@ -2,7 +2,10 @@ package com.library.study.demo.user.dto;
 
 import com.library.study.demo.user.Role;
 import com.library.study.demo.user.User;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import static com.library.study.demo.user.Role.USER;
@@ -11,23 +14,26 @@ import static com.library.study.demo.user.Role.USER;
 @Setter
 @NoArgsConstructor
 public class SignUpReqDto {
-    @Length(min = 5,max = 20)
-    private String loginid;
-    @Length(min = 8,max = 20)
+    @Length(min = 5, max = 20)
+    private String loginId;
+    @Length(min = 8, max = 20)
     private String password;
+    private String name;
     private Role role = USER;
 
     @Builder
-    public SignUpReqDto(String loginid, String password, Role role){
-        this.loginid=loginid;
-        this.password=password;
-        this.role=role;
+    public SignUpReqDto(String loginId, String password, String name, Role role) {
+        this.name = name;
+        this.loginId = loginId;
+        this.password = password;
+        this.role = role;
     }
 
-    public User toEntity(){
+    public User toEntity() {
         return User.builder()
-                .loginid(loginid)
+                .loginId(loginId)
                 .password(password)
+                .name(name)
                 .role(role)
                 .build();
     }
