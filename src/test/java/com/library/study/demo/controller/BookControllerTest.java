@@ -119,8 +119,8 @@ public class BookControllerTest {
                 .build();
         BookDto.Request bookReqDto = BookDto.Request.builder()
                 .title(name)
-                .author(BOOK_TEST_AUTHOR)
-                .isbn(BOOK_TEST_ISBN)
+                .author(TestInitializer.BOOK_TEST_AUTHOR)
+                .isbn(TestInitializer.BOOK_TEST_ISBN)
                 .build();
 
         BookDto.Response bookResDto = testInitializer.getBookResDto(libraryId, bookReqDto);

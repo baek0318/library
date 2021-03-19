@@ -19,8 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureWebTestClient
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LibraryControllerTest {
-    private static final String LIBRARY_TEST_ADDRESS = "testLibAddress";
-    private static final String LIBRARY_TEST_NAME = "testLibName";
 
     @Autowired
     private WebTestClient webTestClient;

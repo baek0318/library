@@ -15,6 +15,6 @@ public class AuthService {
     @Transactional
     public SignUpResDto signUp(SignUpReqDto signUpReqDto){
         User savedUser = userRepository.save(signUpReqDto.toEntity());
-        return new SignUpResDto(savedUser.getId());
+        return new SignUpResDto(savedUser.getId(), savedUser.getName());
     }
 }

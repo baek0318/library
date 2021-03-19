@@ -60,4 +60,11 @@ public class Book {
         this.library = library;
     }
 
+    public void changeStatus() {
+        if (status == BookStatus.AVAILABLE) {
+            status = BookStatus.NOT_AVAILABLE;
+        } else {
+            status = BookStatus.AVAILABLE;
+        }
+    }
 }
