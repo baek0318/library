@@ -135,8 +135,8 @@ Member
    > 
    > ![image](https://user-images.githubusercontent.com/59992230/111809663-92cc1200-8918-11eb-9f42-02ca8bef370b.png)
    > 
-   > | How access|Type | private | protected |  public |
-   | :----: | :----: | :----: |
+   | How access/Type | private | protected |  public |
+   | :----: | :----: | :----: | :----: |
    | Creator | o | o | o |
    | Getter | x | x | o |
    | is-Getter | x | x | o |
