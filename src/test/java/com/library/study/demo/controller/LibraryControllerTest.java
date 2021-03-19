@@ -24,6 +24,7 @@ public class LibraryControllerTest {
 
     @Autowired
     private WebTestClient webTestClient;
+    private TestInitializer testInitializer = new TestInitializer();
 
     private Long libraryId;
     private LibraryDto.Request reqDto;
@@ -31,21 +32,16 @@ public class LibraryControllerTest {
 
     @BeforeEach
     void 도서관생성초기화() {
-        libraryId = createLibraryNameOf(LIBRARY_TEST_NAME);
+        testInitializer.setWebTestClient(webTestClient);
+
+        LibraryDto.Request libraryReqDto = testInitializer.getLibraryReqDto();
+        libraryId = createLibraryNameOf(TestInitializer.LIBRARY_TEST_NAME);
     }
 
     @Test
     void 도서관생성테스트() {
-        LibraryDto.Request reqDto = LibraryDto.Request.builder()
-                .address(LIBRARY_TEST_ADDRESS)
-                .name(LIBRARY_TEST_NAME)
-                .build();
-        LibraryDto.Response resDto = webTestClient.post().uri("/api/librarys")
-                .body(Mono.just(reqDto), LibraryDto.Request.class)
-                .exchange()
-                .expectBody(LibraryDto.Response.class)
-                .returnResult()
-                .getResponseBody();
+        LibraryDto.Request reqDto = testInitializer.getLibraryReqDto();
+        LibraryDto.Response resDto = testInitializer.getLibraryResDto(reqDto);
         assertThat(resDto.getName()).isEqualTo(reqDto.getName());
         assertThat(resDto.getAddress()).isEqualTo(reqDto.getAddress());
     }
@@ -109,12 +105,12 @@ public class LibraryControllerTest {
                 .getResponseBody();
 
         assertThat(resDto).isNotNull();
-        assertThat(resDto.getName()).isEqualTo(LIBRARY_TEST_NAME);
+        assertThat(resDto.getName()).isEqualTo(TestInitializer.LIBRARY_TEST_NAME);
     }
 
     Long createLibraryNameOf(String name) {
         LibraryDto.Request reqDto = LibraryDto.Request.builder()
-                .address(LIBRARY_TEST_ADDRESS)
+                .address(TestInitializer.LIBRARY_TEST_ADDRESS)
                 .name(name)
                 .build();
         LibraryDto.Response resDto = webTestClient.post().uri("/api/librarys")

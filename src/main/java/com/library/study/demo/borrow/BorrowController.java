@@ -13,9 +13,18 @@ public class BorrowController {
     private final BorrowService borrowService;
 
     @PostMapping("/users/{userId}/borrow")
-    ResponseEntity<BorrowDto.Response> doBorrow(@PathVariable("userId") Long userId,
-                                                @RequestBody BorrowDto.Request reqDto) {
+    ResponseEntity<BorrowDto.Response> borrow(@PathVariable("userId") Long userId,
+                                              @RequestBody BorrowDto.Request reqDto) {
         BorrowDto.Response resDto = borrowService.borrow(userId, reqDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(resDto);
+    }
+
+    @PostMapping("/users/{userId}/return")
+    ResponseEntity<BorrowDto.Response> unBorrow(@PathVariable("userId") Long userId,
+                                                @RequestBody BorrowDto.Request reqDto) {
+        BorrowDto.Response resDto = null;//borrowService.unBorrow(userId, reqDto);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(resDto);

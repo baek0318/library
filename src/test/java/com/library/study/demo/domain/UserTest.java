@@ -11,12 +11,12 @@ public class UserTest {
     @Test
     void create() {
         User user = User.builder()
-                .loginid("testID")
+                .loginId("testID")
                 .password("testpw1234")
                 .role(USER)
                 .build();
 
-        assertThat(user.getLoginid()).isEqualTo("testID");
+        assertThat(user.getLoginId()).isEqualTo("testID");
         assertThat(user.getPassword()).isEqualTo("testpw1234");
     }
 

@@ -41,4 +41,5 @@ public class UserDto {
             this.loginId = loginId;
         }
     }
+
 }

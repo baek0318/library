@@ -33,7 +33,7 @@ public class Book {
     private Library library;
 
     @Enumerated(value = EnumType.STRING)
-    private BookStatus bookStatus = BookStatus.AVAILABLE;
+    private BookStatus status = BookStatus.AVAILABLE;
 
     @Builder
     public Book(String title, String author, String isbn) {
@@ -48,6 +48,7 @@ public class Book {
                 .title(title)
                 .author(author)
                 .isbn(isbn)
+                .status(status)
                 .library(library.toResponseDto())
                 .build();
     }

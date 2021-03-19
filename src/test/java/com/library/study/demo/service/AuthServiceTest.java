@@ -3,9 +3,9 @@ package com.library.study.demo.service;
 import com.library.study.demo.user.AuthService;
 import com.library.study.demo.user.Role;
 import com.library.study.demo.user.User;
+import com.library.study.demo.user.UserRepository;
 import com.library.study.demo.user.dto.SignUpReqDto;
 import com.library.study.demo.user.dto.SignUpResDto;
-import com.library.study.demo.user.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,12 +26,12 @@ public class AuthServiceTest {
     void 회원가입_정상(){
 
         SignUpReqDto signUpReqDto = SignUpReqDto.builder()
-                .loginid("testId")
+                .loginId("testId")
                 .password("testpw")
                 .build();
 
         User user = User.builder()
-                .loginid(signUpReqDto.getLoginid())
+                .loginId(signUpReqDto.getLoginId())
                 .password(signUpReqDto.getPassword())
                 .role(Role.USER)
                 .build();

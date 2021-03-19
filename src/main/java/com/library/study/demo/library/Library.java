@@ -1,6 +1,7 @@
 package com.library.study.demo.library;
 
 import com.library.study.demo.book.Book;
+import com.library.study.demo.borrow.Borrow;
 import com.library.study.demo.library.dto.LibraryDto;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -27,6 +28,9 @@ public class Library {
     @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
     private Set<Book> books = new HashSet<>();
 
+    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
+    private Set<Borrow> borrows = new HashSet<>();
+
     @Builder
     Library(String name, String address) {
         this.name = name;
@@ -50,5 +54,13 @@ public class Library {
 
     public void unRegisterBook(Book book) {
         books.remove(book);
+    }
+
+    public void addBorrow(Borrow borrow) {
+        borrows.add(borrow);
+    }
+
+    public void removeBorrow(Borrow borrow) {
+        borrows.remove(borrow);
     }
 }

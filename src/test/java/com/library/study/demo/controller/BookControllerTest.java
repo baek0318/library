@@ -20,55 +20,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureWebTestClient
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BookControllerTest {
-    private static final String LIBRARY_TEST_ADDRESS = "testLibAddress";
-    private static final String LIBRARY_TEST_NAME = "testLibName";
-    private static final String BOOK_TEST_TITLE = "testBookTitle";
-    private static final String BOOK_TEST_AUTHOR = "testBookAuthor";
-    private static final String BOOK_TEST_ISBN = "testBookISBN";
 
     @Autowired
     private WebTestClient webTestClient;
+
+    private TestInitializer testInitializer = new TestInitializer();
     private Long libraryId;
     private Long bookId;
+
     @BeforeEach
     public void 도서관초기화() {
-        LibraryDto.Request reqDto = LibraryDto.Request.builder()
-                .address(LIBRARY_TEST_ADDRESS)
-                .name(LIBRARY_TEST_NAME)
-                .build();
-        LibraryDto.Response resDto = webTestClient.post().uri("/api/librarys")
-                .body(Mono.just(reqDto), LibraryDto.Request.class)
-                .exchange()
-                .expectBody(LibraryDto.Response.class)
-                .returnResult()
-                .getResponseBody();
+        testInitializer.setWebTestClient(webTestClient);
+
+        LibraryDto.Request reqDto = testInitializer.getLibraryReqDto();
+        LibraryDto.Response resDto = testInitializer.getLibraryResDto(reqDto);
         libraryId = resDto.getId();
 
-        BookDto.Request bookReqDto = BookDto.Request.builder()
-                .title(BOOK_TEST_TITLE)
-                .author(BOOK_TEST_AUTHOR)
-                .isbn(BOOK_TEST_ISBN)
-                .build();
-        BookDto.Response bookResDto = webTestClient.post().uri("/api/librarys/{id}/books", libraryId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(bookReqDto), BookDto.Request.class)
-                .exchange()
-                .expectStatus().isCreated()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(BookDto.Response.class)
-                .returnResult()
-                .getResponseBody();
+        BookDto.Request bookReqDto = testInitializer.getBookReqDto();
+        BookDto.Response bookResDto = testInitializer.getBookResDto(libraryId, bookReqDto);
         bookId = bookResDto.getId();
     }
 
     @Test
     void 책등록() {
-        BookDto.Request reqDto = BookDto.Request.builder()
-                .title(BOOK_TEST_TITLE)
-                .author(BOOK_TEST_AUTHOR)
-                .isbn(BOOK_TEST_ISBN)
-                .build();
+        BookDto.Request reqDto = testInitializer.getBookReqDto();
+
         BookDto.Response resDto = webTestClient.post().uri("/api/librarys/{id}/books", libraryId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -104,9 +80,9 @@ public class BookControllerTest {
                 .getResponseBody();
 
         assertThat(resDto).isNotNull();
-        assertThat(resDto.getTitle()).isEqualTo(BOOK_TEST_TITLE);
-        assertThat(resDto.getAuthor()).isEqualTo(BOOK_TEST_AUTHOR);
-        assertThat(resDto.getIsbn()).isEqualTo(BOOK_TEST_ISBN);
+        assertThat(resDto.getTitle()).isEqualTo(TestInitializer.BOOK_TEST_TITLE);
+        assertThat(resDto.getAuthor()).isEqualTo(TestInitializer.BOOK_TEST_AUTHOR);
+        assertThat(resDto.getIsbn()).isEqualTo(TestInitializer.BOOK_TEST_ISBN);
     }
 
     @Test
@@ -138,7 +114,7 @@ public class BookControllerTest {
 
     Long createBookNameOf(String name) {
         LibraryDto.Request reqDto = LibraryDto.Request.builder()
-                .address(LIBRARY_TEST_ADDRESS)
+                .address(TestInitializer.LIBRARY_TEST_ADDRESS)
                 .name(name)
                 .build();
         BookDto.Request bookReqDto = BookDto.Request.builder()
@@ -147,16 +123,7 @@ public class BookControllerTest {
                 .isbn(BOOK_TEST_ISBN)
                 .build();
 
-        BookDto.Response bookResDto = webTestClient.post().uri("/api/librarys/{id}/books", libraryId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(bookReqDto), BookDto.Request.class)
-                .exchange()
-                .expectStatus().isCreated()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(BookDto.Response.class)
-                .returnResult()
-                .getResponseBody();
+        BookDto.Response bookResDto = testInitializer.getBookResDto(libraryId, bookReqDto);
         return bookResDto.getId();
     }
 }

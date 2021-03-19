@@ -36,14 +36,14 @@ public class BookService {
     }
 
     public BookDto.Response find(Long bookId) {
+        Book book = findById(bookId);
+        return book.toResponseDto();
+    }
+
+    public Book findById(Long bookId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException("해당 도서가 존재하지 않습니다."));
-//        Book book = library.getBooks()
-//                .stream()
-//                .filter(b -> b.getId().equals(bookId))
-//                .findFirst()
-//                .orElseThrow(() -> new RuntimeException("해당 도서가 존재하지 않습니다."));
-        return book.toResponseDto();
+        return book;
     }
 
     public List<BookDto.Response> findAll(Long libraryId) {

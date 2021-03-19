@@ -1,6 +1,6 @@
 package com.library.study.demo.user;
 
-import com.library.study.demo.book.Book;
+import com.library.study.demo.borrow.Borrow;
 import com.library.study.demo.user.dto.UserDto;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -34,7 +34,7 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Book> books = new ArrayList<Book>();
+    private List<Borrow> borrows = new ArrayList<Borrow>();
 
     @Builder
     public User(String loginId, String password, String name, Role role) {
@@ -50,5 +50,16 @@ public class User {
                 .name(name)
                 .loginId(loginId)
                 .build();
+    }
+
+    public void addBorrow(Borrow borrow) {
+        if (borrows.size() == 5) {
+            throw new RuntimeException("대출 한도를 초과할 수 없습니다.");
+        }
+        borrows.add(borrow);
+    }
+
+    public void removeBorrow(Borrow borrow) {
+        borrows.remove(borrow);
     }
 }

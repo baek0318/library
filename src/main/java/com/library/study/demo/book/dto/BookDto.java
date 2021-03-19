@@ -1,6 +1,7 @@
 package com.library.study.demo.book.dto;
 
 import com.library.study.demo.book.Book;
+import com.library.study.demo.book.BookStatus;
 import com.library.study.demo.library.dto.LibraryDto;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -38,13 +39,15 @@ public class BookDto {
         private String title;
         private String author;
         private String isbn;
+        private BookStatus status;
         private LibraryDto.Response library;
 
         @Builder
-        public Response(Long id, String title, String author, String isbn, LibraryDto.Response library) {
+        public Response(Long id, String title, String author, BookStatus status, String isbn, LibraryDto.Response library) {
             this.id = id;
             this.title = title;
             this.author = author;
+            this.status = status;
             this.isbn = isbn;
             this.library = library;
         }

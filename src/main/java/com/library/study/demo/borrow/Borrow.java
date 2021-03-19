@@ -41,7 +41,16 @@ public class Borrow {
     @OneToOne(fetch = FetchType.LAZY)
     private Book book;
 
-    public BorrowDto.Response toResponseDto(Borrow borrow) {
+    public Borrow(User user, Library library, Book book) {
+        this.user = user;
+        this.library = library;
+        this.book = book;
+
+        user.addBorrow(this);
+        library.addBorrow(this);
+    }
+
+    public BorrowDto.Response toResponseDto() {
         return BorrowDto.Response.
                 builder()
                 .id(id)

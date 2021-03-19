@@ -1,9 +1,9 @@
 package com.library.study.demo.controller;
 
+import com.library.study.demo.book.BookStatus;
 import com.library.study.demo.book.dto.BookDto;
 import com.library.study.demo.borrow.dto.BorrowDto;
 import com.library.study.demo.library.dto.LibraryDto;
-import com.library.study.demo.user.Role;
 import com.library.study.demo.user.dto.SignUpReqDto;
 import com.library.study.demo.user.dto.SignUpResDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,14 +20,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureWebTestClient
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BorrowControllerTest {
-    private static final String LIBRARY_TEST_ADDRESS = "testLibAddress";
-    private static final String LIBRARY_TEST_NAME = "testLibName";
-    private static final String BOOK_TEST_TITLE = "testBookTitle";
-    private static final String BOOK_TEST_AUTHOR = "testBookAuthor";
-    private static final String BOOK_TEST_ISBN = "testBookISBN";
-    private static final String USER_TEST_ID = "testid";
-    private static final String USER_TEST_PASSWORD = "testpw1235~@@";
-
     @Autowired
     private WebTestClient webTestClient;
 
@@ -62,23 +54,8 @@ public class BorrowControllerTest {
                 .getResponseBody();
         bookId = bookResDto.getId();
 
-        SignUpReqDto userReqDto = SignUpReqDto.builder()
-                .loginid(USER_TEST_ID)
-                .password(USER_TEST_PASSWORD)
-                .role(Role.USER)
-                .build();
-
-        SignUpResDto userResDto = webTestClient.post()
-                .uri("/api/signup")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(userReqDto), SignUpReqDto.class)
-                .exchange()
-                .expectStatus().isCreated()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(SignUpResDto.class)
-                .returnResult()
-                .getResponseBody();
+        SignUpReqDto userReqDto = testInitializer.getSignUpReqDto();
+        SignUpResDto userResDto = testInitializer.getSignupResDto(userReqDto);
         userId = userResDto.getId();
     }
 
@@ -102,6 +79,22 @@ public class BorrowControllerTest {
                 .returnResult()
                 .getResponseBody();
         assertThat(ResDto.getBook().getId()).isEqualTo(bookId);
+        assertThat(ResDto.getBook().getStatus()).isEqualTo(BookStatus.NOT_AVAILABLE);
         assertThat(ResDto.getUser().getId()).isEqualTo(userId);
+    }
+
+    @Test
+    void 도서반납테스트() {
+        BorrowDto.Request reqDto = BorrowDto.Request.builder()
+                .libraryId(libraryId)
+                .bookId(bookId)
+                .build();
+
+        webTestClient.post().uri("/api/users/" + userId + "/return")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(reqDto), BorrowDto.Request.class)
+                .exchange()
+                .expectStatus().isOk();
     }
 }
