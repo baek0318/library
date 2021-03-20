@@ -59,10 +59,8 @@ public class BorrowControllerTest {
 
     @Test
     void 도서반납테스트() {
-        BorrowDto.Request reqDto = BorrowDto.Request.builder()
-                .libraryId(libraryId)
-                .bookId(bookId)
-                .build();
+        BorrowDto.Request reqDto = testInitializer.getBorrowReqDto(libraryId, bookId);
+        BorrowDto.Response ResDto = testInitializer.getBorrowResDto(userId, reqDto);
 
         webTestClient.post().uri("/api/users/" + userId + "/return")
                 .contentType(MediaType.APPLICATION_JSON)

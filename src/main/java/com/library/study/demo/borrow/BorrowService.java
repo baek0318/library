@@ -33,11 +33,10 @@ public class BorrowService {
         User user = userService.findById(userId);
         Book book = bookService.findById(reqDto.getBookId());
         Library library = libraryService.findById(reqDto.getLibraryId());
-
         Borrow borrow = borrowRepository.findByBook_Id(book.getId()).orElseThrow(() -> new RuntimeException("해당 책은 대여중이 아닙니다."));
-
         user.removeBorrow(borrow);
         library.removeBorrow(borrow);
+        borrowRepository.delete(borrow);
         book.changeStatus();
     }
 }

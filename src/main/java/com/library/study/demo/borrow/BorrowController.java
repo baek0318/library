@@ -24,9 +24,9 @@ public class BorrowController {
     @PostMapping("/users/{userId}/return")
     ResponseEntity<BorrowDto.Response> unBorrow(@PathVariable("userId") Long userId,
                                                 @RequestBody BorrowDto.Request reqDto) {
-        BorrowDto.Response resDto = null;//borrowService.unBorrow(userId, reqDto);
+        borrowService.unBorrow(userId, reqDto);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(resDto);
+                .build();
     }
 }

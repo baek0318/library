@@ -18,7 +18,6 @@ public class LibraryDto {
             this.name = name;
             this.address = address;
         }
-
         public Library toEntity() {
             return Library.builder()
                     .name(name)
