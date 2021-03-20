@@ -32,7 +32,7 @@
 > 
 > - OOP에 집중하고자 Database로의 접근은 ORM을 이용한 Spring JPA를, DB는 embedded H2를 사용
 > 
-> - Unit test를 위해 Mock와 RestTemplate을 활용
+> - Unit test를 위해 Mock&InjectMock를 사용, Integrate test를 위해 MockMvc와 RestTemplate을 활용 [둘의 차이점](https://stackoverflow.com/questions/25901985/difference-between-mockmvc-and-resttemplate-in-integration-tests)
 ### Entity 분석
   ![image](https://user-images.githubusercontent.com/59992230/111818053-176f5e00-8922-11eb-9ed9-a3a04944926a.png)
 
