@@ -3,6 +3,7 @@ package com.library.study.demo.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -15,6 +16,16 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "bookInfoId", referencedColumnName = "id")
     private BookInfo info;
+
+    @ManyToOne
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    private User user;
+
+    @Column
+    private LocalDateTime borrowTime;
+
+    @Column
+    private LocalDateTime returnTime;
 
     protected Book() {}
 
