@@ -31,7 +31,7 @@
 service layer를 repository로 부터 분리해서 독립적인 테스트를 진행하기 위해서 사용
 
 ## ER 다이어그램
-![library-ER_Diagram](./img/library.png)
+![library-ER_Diagram](./img/library_ER_Diagram.png)
 
 ## 클래스 다이어그램
 
