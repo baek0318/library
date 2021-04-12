@@ -31,11 +31,39 @@
 service layer를 repository로 부터 분리해서 독립적인 테스트를 진행하기 위해서 사용
 
 ## ER 다이어그램
-![library-ER_Diagram](./img/library_ER_Diagram.png)
+![library-ER_Diagram](./img/library_er.png)
 
-## 클래스 다이어그램
+## 📡 API
+### Author API
+|HttpMethod|URL|Parameter|
+|---|---|---|
+|POST|/author|name : String|
+|GET|/author/all||
+|GET|/author|name : String|
+|GET|/author/{author-id}||
 
-  
+### BookInfo API
+|HttpMethod|URL|Parameter|
+|---|---|---|
+|POST|/bookinfo|title : String|
+|GET|/bookinfo/all||
+|GET|/bookinfo|title : String|
+|GET|/bookinfo/{bookinfo-id}||
+|PUT|/bookinfo|title : String|
+
+### Book API
+|HttpMethod|URL|Parameter|
+|---|---|---|
+
+
+### Borrow API
+|HttpMethod|URL|Parameter|
+|---|---|---|
+
+### User API
+|HttpMethod|URL|Parameter|
+|---|---|---|
+
 ## ❌ 문제 해결 또는 궁금점 해결
 - **[Specification 오류/정리](./img/Specification.pdf)**
 - **[Mockito any() 오류](./img/Mockito_.pdf)**
