@@ -17,16 +17,6 @@ public class Book {
     @JoinColumn(name = "bookInfoId", referencedColumnName = "id")
     private BookInfo info;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id")
-    private User user;
-
-    @Column
-    private LocalDateTime borrowTime;
-
-    @Column
-    private LocalDateTime returnTime;
-
     protected Book() {}
 
     public Book(BookInfo info) {
