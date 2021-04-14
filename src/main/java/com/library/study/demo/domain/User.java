@@ -17,7 +17,7 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "borrow")
+    @OneToMany(mappedBy = "user")
     private List<Borrow> borrowList;
 
     @Enumerated(value = EnumType.STRING)
