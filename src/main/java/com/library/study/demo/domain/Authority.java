@@ -1,25 +1,22 @@
 package com.library.study.demo.domain;
 
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Author {
+public class Authority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String name;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
-    public Author(String name) {
-        this.name = name;
+    public Authority(Role role) {
+        this.role = role;
     }
 }

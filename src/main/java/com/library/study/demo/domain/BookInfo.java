@@ -1,6 +1,8 @@
 package com.library.study.demo.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -9,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BookInfo {
 
     @Id
@@ -21,8 +24,6 @@ public class BookInfo {
     @ManyToOne
     @JoinColumn(name = "authorId", referencedColumnName = "id")
     private Author author;
-
-    protected  BookInfo() {}
 
     public BookInfo(String title, Author author) {
         this.title = title;
