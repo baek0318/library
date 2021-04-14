@@ -1,12 +1,15 @@
 package com.library.study.demo.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Book {
 
     @Id
@@ -17,18 +20,8 @@ public class Book {
     @JoinColumn(name = "bookInfoId", referencedColumnName = "id")
     private BookInfo info;
 
-    protected Book() {}
-
     public Book(BookInfo info) {
         this.info = info;
     }
 
-    public boolean isAvailable() {
-//        for(Borrow borrow : borrows) {
-//            if(borrow.getEndDate() == null) {
-//                return false;
-//            }
-//        }
-        return false;
-    }
 }
