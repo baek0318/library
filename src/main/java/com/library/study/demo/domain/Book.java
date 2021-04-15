@@ -16,12 +16,14 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 0L;
 
-    @ManyToOne
+    private boolean status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bookInfoId", referencedColumnName = "id")
     private BookInfo info;
 
-    public Book(BookInfo info) {
+    public Book(boolean status, BookInfo info) {
+        this.status = status;
         this.info = info;
     }
-
 }

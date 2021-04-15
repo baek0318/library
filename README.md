@@ -69,7 +69,7 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 |---|---|---|
 |POST|/user|email : String, password : String|
 |GET|/user/{user-id}||
-|GET|/user/books||
+|GET|/user/borrows||
 
 ## ❌ 문제 해결 또는 궁금점 해결
 - **[Specification 오류/정리](./img/Specification.pdf)**
@@ -77,3 +77,4 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 - **[Spring boot h2 db 초기설정](./img/Spring_boot_H2_.pdf)**
 - **테스트가 안되는 상황**  
   - 정확한 원인은 모르겠으나 test 설정을 gradle -> Intellij로 변경후 IDE 재시작
+- **유저가 빌릴 수 있는 책의개수를 설정을 어디서 해줄지**
