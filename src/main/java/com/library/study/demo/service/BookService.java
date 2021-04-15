@@ -22,6 +22,6 @@ public class BookService {
     @Transactional
     public Long save(Long bookInfoId) {
         BookInfo bookInfo = bookInfoRepository.findById(bookInfoId).orElseThrow(IllegalArgumentException::new);
-        return bookRepository.save(new Book(bookInfo)).getId();
+        return bookRepository.save(new Book(false, bookInfo)).getId();
     }
 }
