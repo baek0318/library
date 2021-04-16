@@ -33,6 +33,6 @@ public class UserAcceptanceTest {
                         SaveUserResponse.class);
 
         Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
+        Assertions.assertThat(responseEntity.getBody().getId()).isEqualTo(1L);
     }
 }

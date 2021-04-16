@@ -36,4 +36,7 @@ public class User {
         this.authority = authority;
     }
 
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
+    }
 }
