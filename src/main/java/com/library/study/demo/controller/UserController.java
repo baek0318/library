@@ -2,12 +2,11 @@ package com.library.study.demo.controller;
 
 import com.library.study.demo.controller.dto.SaveUserRequest;
 import com.library.study.demo.controller.dto.SaveUserResponse;
+import com.library.study.demo.controller.dto.UserResponse;
+import com.library.study.demo.domain.User;
 import com.library.study.demo.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,5 +26,13 @@ public class UserController {
         Long result = userService.save(userDto.toEntity());
 
         return ResponseEntity.ok(new SaveUserResponse(result));
+    }
+
+    @GetMapping("/{member-id}")
+    public ResponseEntity<UserResponse> getUserInfo(@PathVariable(name = "member-id") Long id) {
+
+        User result = userService.findById(id);
+
+        return ResponseEntity.ok(new UserResponse(result.getEmail()));
     }
 }
