@@ -23,9 +23,6 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Borrow> borrowList;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "authority_id")
     private Authority authority;
