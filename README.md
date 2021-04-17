@@ -38,7 +38,6 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 |HttpMethod|URL|Parameter|
 |---|---|---|
 |POST|/author|name : String|
-|GET|/author/all||
 |GET|/author|name : String|
 |GET|/author/{author-id}||
 
@@ -62,6 +61,7 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 |---|---|---|
 |POST|/borrow/{user-id}|borrowDate : String, book-id : Long|
 |GET|/borrow/{borrow-id}||
+|GET|/borrow/{user-id}/list||
 |PUT|/borrow/{borrow-id}|returnDate : String|
 
 ### User API
@@ -69,7 +69,6 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 |---|---|---|
 |POST|/user|email : String, password : String|
 |GET|/user/{user-id}||
-|GET|/user/borrows||
 
 ## ❌ 문제 해결 또는 궁금점 해결
 - **[Specification 오류/정리](./img/Specification.pdf)**
