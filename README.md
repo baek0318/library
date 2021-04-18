@@ -40,6 +40,7 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 |POST|/author|name : String|
 |GET|/author|name : String|
 |GET|/author/{author-id}||
+|PUT|/author/|author-id : Long, name : String|
 
 ### BookInfo API
 |HttpMethod|URL|Parameter|

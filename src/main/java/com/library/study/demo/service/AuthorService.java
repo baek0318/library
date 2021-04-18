@@ -7,6 +7,7 @@ import com.library.study.demo.service.dto.SaveAuthorCommand;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class AuthorService {
@@ -23,8 +24,20 @@ public class AuthorService {
         );
     }
 
-    public Author getAuthor(Long id) {
-        return authorRepository.findById(id).orElse(null);
+    @Transactional
+    public Author getAuthorById(Long id) {
+        return authorRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
+    @Transactional
+    public List<Author> getAuthorByName(String name) {
+        return authorRepository.findByNameLike("%"+name+"%");
+    }
+
+    @Transactional
+    public Author updateAuthorName(Long id, String changing) {
+        Author author = authorRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        author.changeName(changing);
+        return authorRepository.save(author);
+    }
 }

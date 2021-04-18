@@ -1,14 +1,17 @@
 package com.library.study.demo.acceptance;
 
-import com.library.study.demo.controller.dto.AuthorResponse;
-import com.library.study.demo.controller.dto.SaveAuthorRequest;
-import com.library.study.demo.controller.dto.SaveAuthorResponse;
+import com.library.study.demo.controller.dto.*;
+import com.library.study.demo.domain.Author;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
+
+import java.util.Collections;
+import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AuthorAcceptanceTest {
@@ -22,19 +25,72 @@ public class AuthorAcceptanceTest {
 
         HttpEntity<SaveAuthorRequest> request = new HttpEntity(authorRequest, new HttpHeaders());
 
-        ResponseEntity<SaveAuthorResponse> response = restTemplate.postForEntity("/author/save", request, SaveAuthorResponse.class);
+        ResponseEntity<SaveAuthorResponse> response = restTemplate
+                .postForEntity(
+                        "/author",
+                        request,
+                        SaveAuthorResponse.class
+                );
 
-        Assertions.assertEquals(response.getBody().getId(), 1L);
+        Assertions.assertEquals(response.getBody().getId(), 2L);
     }
 
     @Test
-    void 작가_조회_테스트() {
-        SaveAuthorResponse saveAuthorResponse = 작가_생성됨(restTemplate, "jon");
-        ResponseEntity<AuthorResponse> response = restTemplate.getForEntity("/author?id="+saveAuthorResponse.getId(), AuthorResponse.class);
+    @DisplayName("작가 이름으로 찾기")
+    void testAuthorFindByName() {
 
-        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-        Assertions.assertEquals(response.getBody().getId(), saveAuthorResponse.getId());
-        Assertions.assertEquals(response.getBody().getName(), "jon");
+        ResponseEntity<AuthorListResponse> responseEntity = restTemplate
+                .getForEntity(
+                        "/author?name=baek",
+                        AuthorListResponse.class
+                );
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertNotNull(responseEntity.getBody().getAuthorList());
+        List<AuthorResponse> response = responseEntity.getBody().getAuthorList();
+        for(int i = 1; i <= response.size(); i++){
+            System.out.println("author id:"+response.get(i-1).getId()+" author name:"+response.get(i-1).getName());
+            Assertions.assertEquals(i, response.get(i-1).getId());
+        }
+    }
+
+    @Test
+    @DisplayName("아이디로 작가 조회하기")
+    void testAuthorFindById() {
+
+        ResponseEntity<AuthorResponse> responseEntity = restTemplate
+                .getForEntity(
+                        "/author/{author-id}",
+                        AuthorResponse.class,
+                        1L
+                );
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertEquals("baek", responseEntity.getBody().getName());
+        Assertions.assertEquals(1L, responseEntity.getBody().getId());
+    }
+
+    @Test
+    @DisplayName("작가 이름 업데이트 하기")
+    void testAuthorNameUpdate() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        AuthorUpdateRequest updateDto = new AuthorUpdateRequest(2L, "baeks");
+
+        HttpEntity<AuthorUpdateRequest> requestEntity = new HttpEntity(updateDto ,headers);
+
+        ResponseEntity<AuthorResponse> responseEntity = restTemplate
+                .exchange(
+                        "/author",
+                        HttpMethod.PUT,
+                        requestEntity,
+                        AuthorResponse.class
+                );
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertEquals(2L, responseEntity.getBody().getId());
+        Assertions.assertEquals("baeks", responseEntity.getBody().getName());
+
     }
 
     public static SaveAuthorResponse 작가_생성됨(TestRestTemplate template, String authorName) {
