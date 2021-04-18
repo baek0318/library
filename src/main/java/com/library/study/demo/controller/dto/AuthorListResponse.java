@@ -10,9 +10,9 @@ import java.util.List;
 @NoArgsConstructor
 public class AuthorListResponse {
 
-    private List<Author> authorList;
+    private List<AuthorResponse> authorList;
 
-    public AuthorListResponse(List<Author> authorList) {
+    public AuthorListResponse(List<AuthorResponse> authorList) {
         this.authorList = authorList;
     }
 }
