@@ -46,9 +46,9 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 |HttpMethod|URL|Parameter|
 |---|---|---|
 |POST|/bookinfo|title : String|
-|GET|/bookinfo/all||
+|GET|/bookinfo/list||
 |GET|/bookinfo|title : String|
-|GET|/bookinfo/{bookinfo-id}||
+|GET|/bookinfo|id : Long|
 |PUT|/bookinfo|title : String|
 
 ### Book API
