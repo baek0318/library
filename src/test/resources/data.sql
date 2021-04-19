@@ -5,3 +5,5 @@ insert into user(email, password, authority_id) values('peach18@kakao.com','1234
 
 insert into author(name) values('baek');
 insert into author(name) values('baeked');
+
+insert into book_info(title, author_id) values('peachberr', 1);

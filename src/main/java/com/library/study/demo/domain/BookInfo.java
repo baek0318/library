@@ -41,4 +41,8 @@ public class BookInfo {
     public static Specification<BookInfo> specByTitle(String title) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), "%" + title + "%");
     }
+
+    public void changeTitle(String title) {
+        this.title = title;
+    }
 }
