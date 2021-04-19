@@ -1,6 +1,7 @@
 package com.library.study.demo.acceptance;
 
 import com.library.study.demo.controller.dto.*;
+import org.apache.coyote.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -75,6 +73,48 @@ public class BookInfoAcceptanceTest {
 
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals(1L, response.getId());
+    }
+
+    @Test
+    @DisplayName("책 이름으로 가져오기")
+    void getBookInfoByNameTest() {
+        ResponseEntity<BookInfoListResponse> responseEntity = restTemplate
+                .getForEntity(
+                        "/bookinfo?title=peachberr",
+                        BookInfoListResponse.class
+                );
+
+        BookInfoListResponse response = responseEntity.getBody();
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertNotNull(response.getBookInfoResponseList());
+        int count = 0;
+        for (BookInfoResponse bookInfo : response.getBookInfoResponseList()) {
+            if (bookInfo.getTitle().contains("peachberr")) {
+                count++;
+            }
+        }
+        Assertions.assertEquals(response.getBookInfoResponseList().size(), count);
+    }
+
+    @Test
+    @DisplayName("책 정보 수정하기 테스트")
+    void updateBookInfoNameTest() {
+        HttpHeaders headers = new HttpHeaders();
+        BookInfoUpdateRequest requestDto = new BookInfoUpdateRequest("peachberry");
+
+        HttpEntity<BookInfoUpdateRequest> request = new HttpEntity(requestDto, headers);
+        ResponseEntity<BookInfoResponse> responseEntity = restTemplate
+                .exchange(
+                        "/bookinfo/{bookinfo-id}",
+                        HttpMethod.PUT,
+                        request,
+                        BookInfoResponse.class,
+                        1L
+                );
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertEquals("peachberry", responseEntity.getBody().getTitle());
     }
 
     public static SaveBookInfoResponse 책_정보_생성됨(TestRestTemplate template, String bookInfoTitle, Long authorId) {

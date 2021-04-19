@@ -49,6 +49,7 @@ public class BookInfoService {
         return bookInfoRepository.findAll(BookInfo.specByAuthorName(authorName));
     }
 
+    @Transactional
     public BookInfoListResponse findAll() {
         List<BookInfoResponse> bookInfoResponseList = bookInfoRepository.findAll()
                 .stream()
@@ -56,5 +57,13 @@ public class BookInfoService {
                 .collect(Collectors.toList());
 
         return new BookInfoListResponse(bookInfoResponseList);
+    }
+
+    @Transactional
+    public BookInfo updateName(Long id, String title) {
+
+        BookInfo oldBookInfo = bookInfoRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        oldBookInfo.changeTitle(title);
+        return bookInfoRepository.save(oldBookInfo);
     }
 }
