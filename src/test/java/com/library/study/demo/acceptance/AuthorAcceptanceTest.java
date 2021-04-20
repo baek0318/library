@@ -1,7 +1,6 @@
 package com.library.study.demo.acceptance;
 
 import com.library.study.demo.controller.dto.*;
-import com.library.study.demo.domain.Author;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -75,9 +74,9 @@ public class AuthorAcceptanceTest {
     void testAuthorNameUpdate() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        AuthorUpdateRequest updateDto = new AuthorUpdateRequest(2L, "baeks");
+        UpdateAuthorRequest updateDto = new UpdateAuthorRequest(2L, "baeks");
 
-        HttpEntity<AuthorUpdateRequest> requestEntity = new HttpEntity(updateDto ,headers);
+        HttpEntity<UpdateAuthorRequest> requestEntity = new HttpEntity(updateDto ,headers);
 
         ResponseEntity<AuthorResponse> responseEntity = restTemplate
                 .exchange(
