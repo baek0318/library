@@ -54,8 +54,9 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 ### Book API
 |HttpMethod|URL|Parameter|
 |---|---|---|
-|POST|/book||
-
+|POST|/book|book-info-id : Long|
+|GET|/book/{book-id}|book-id : Long|
+|PUT|/book/{book-id}|book-id : Long|
 
 ### Borrow API
 |HttpMethod|URL|Parameter|
@@ -78,3 +79,4 @@ service layer를 repository로 부터 분리해서 독립적인 테스트를 진
 - **테스트가 안되는 상황**  
   - 정확한 원인은 모르겠으나 test 설정을 gradle -> Intellij로 변경후 IDE 재시작
 - **유저가 빌릴 수 있는 책의개수를 설정을 어디서 해줄지**
+- **lombok 사용시 원시타입은 @Getter로 생성이 안됨**
