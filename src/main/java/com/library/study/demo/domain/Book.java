@@ -16,7 +16,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 0L;
 
-    private boolean status;
+    private Boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bookInfoId", referencedColumnName = "id")
@@ -25,5 +25,9 @@ public class Book {
     public Book(boolean status, BookInfo info) {
         this.status = status;
         this.info = info;
+    }
+
+    public void updateStatus(boolean status) {
+        this.status = status;
     }
 }

@@ -44,7 +44,7 @@ public class AuthorController {
     }
 
     @PutMapping("")
-    public ResponseEntity<AuthorResponse> updateAuthorName(@RequestBody AuthorUpdateRequest updateDto) {
+    public ResponseEntity<AuthorResponse> updateAuthorName(@RequestBody UpdateAuthorRequest updateDto) {
 
         Author author = authorService.updateAuthorName(updateDto.getId(), updateDto.getName());
 

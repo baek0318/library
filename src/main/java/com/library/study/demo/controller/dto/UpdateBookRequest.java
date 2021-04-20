@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BookInfoUpdateRequest {
+public class UpdateBookRequest {
 
-    private String title;
+    private Boolean status;
 
-    public BookInfoUpdateRequest(String title) {
-        this.title = title;
+    public UpdateBookRequest(Boolean status) {
+        this.status = status;
     }
 }

@@ -1,7 +1,6 @@
 package com.library.study.demo.acceptance;
 
 import com.library.study.demo.controller.dto.*;
-import org.apache.coyote.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -101,9 +100,9 @@ public class BookInfoAcceptanceTest {
     @DisplayName("책 정보 수정하기 테스트")
     void updateBookInfoNameTest() {
         HttpHeaders headers = new HttpHeaders();
-        BookInfoUpdateRequest requestDto = new BookInfoUpdateRequest("peachberry");
+        UpdateBookInfoRequest requestDto = new UpdateBookInfoRequest("peachberry");
 
-        HttpEntity<BookInfoUpdateRequest> request = new HttpEntity(requestDto, headers);
+        HttpEntity<UpdateBookInfoRequest> request = new HttpEntity(requestDto, headers);
         ResponseEntity<BookInfoResponse> responseEntity = restTemplate
                 .exchange(
                         "/bookinfo/{bookinfo-id}",

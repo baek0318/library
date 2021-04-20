@@ -64,7 +64,7 @@ public class BookInfoController {
 
     @PutMapping("/{bookinfo-id}")
     public ResponseEntity<BookInfoResponse> updateBookInfoName(
-            @RequestBody BookInfoUpdateRequest updateDto,
+            @RequestBody UpdateBookInfoRequest updateDto,
             @PathVariable(name = "bookinfo-id") Long id
     ) {
 
