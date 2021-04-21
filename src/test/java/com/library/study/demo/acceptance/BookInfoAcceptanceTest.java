@@ -1,6 +1,7 @@
 package com.library.study.demo.acceptance;
 
-import com.library.study.demo.controller.dto.*;
+import com.library.study.demo.controller.dto.author.SaveAuthorResponse;
+import com.library.study.demo.controller.dto.bookinfo.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

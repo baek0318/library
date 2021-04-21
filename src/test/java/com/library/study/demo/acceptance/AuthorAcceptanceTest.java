@@ -1,6 +1,6 @@
 package com.library.study.demo.acceptance;
 
-import com.library.study.demo.controller.dto.*;
+import com.library.study.demo.controller.dto.author.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

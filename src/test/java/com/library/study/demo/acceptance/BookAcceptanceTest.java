@@ -1,9 +1,9 @@
 package com.library.study.demo.acceptance;
 
-import com.library.study.demo.controller.dto.BookResponse;
-import com.library.study.demo.controller.dto.SaveBookRequest;
-import com.library.study.demo.controller.dto.SaveBookResponse;
-import com.library.study.demo.controller.dto.UpdateBookRequest;
+import com.library.study.demo.controller.dto.book.BookResponse;
+import com.library.study.demo.controller.dto.book.SaveBookRequest;
+import com.library.study.demo.controller.dto.book.SaveBookResponse;
+import com.library.study.demo.controller.dto.book.UpdateBookRequest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

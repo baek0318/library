@@ -1,9 +1,8 @@
 package com.library.study.demo.service;
 
 
-import com.library.study.demo.controller.dto.AuthorResponse;
-import com.library.study.demo.controller.dto.BookInfoListResponse;
-import com.library.study.demo.controller.dto.BookInfoResponse;
+import com.library.study.demo.controller.dto.bookinfo.BookInfoListResponse;
+import com.library.study.demo.controller.dto.bookinfo.BookInfoResponse;
 import com.library.study.demo.dao.AuthorRepository;
 import com.library.study.demo.dao.BookInfoRepository;
 import com.library.study.demo.domain.Author;

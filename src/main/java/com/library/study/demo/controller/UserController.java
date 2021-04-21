@@ -1,8 +1,8 @@
 package com.library.study.demo.controller;
 
-import com.library.study.demo.controller.dto.SaveUserRequest;
-import com.library.study.demo.controller.dto.SaveUserResponse;
-import com.library.study.demo.controller.dto.UserResponse;
+import com.library.study.demo.controller.dto.user.SaveUserRequest;
+import com.library.study.demo.controller.dto.user.SaveUserResponse;
+import com.library.study.demo.controller.dto.user.UserResponse;
 import com.library.study.demo.domain.User;
 import com.library.study.demo.service.UserService;
 import org.springframework.http.ResponseEntity;

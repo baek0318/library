@@ -1,15 +1,16 @@
-package com.library.study.demo.controller.dto;
+package com.library.study.demo.controller.dto.bookinfo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class SaveAuthorResponse {
+public class SaveBookInfoResponse {
 
     private Long id;
 
-    public SaveAuthorResponse(Long id) {
+    public SaveBookInfoResponse(Long id) {
         this.id = id;
     }
+
 }

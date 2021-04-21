@@ -1,4 +1,4 @@
-package com.library.study.demo.controller.dto;
+package com.library.study.demo.controller.dto.bookinfo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

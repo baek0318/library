@@ -1,5 +1,6 @@
-package com.library.study.demo.controller.dto;
+package com.library.study.demo.controller.dto.bookinfo;
 
+import com.library.study.demo.controller.dto.author.AuthorResponse;
 import com.library.study.demo.domain.BookInfo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

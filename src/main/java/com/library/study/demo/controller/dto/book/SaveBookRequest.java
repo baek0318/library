@@ -1,4 +1,4 @@
-package com.library.study.demo.controller.dto;
+package com.library.study.demo.controller.dto.book;
 
 import lombok.AccessLevel;
 import lombok.Data;

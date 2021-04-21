@@ -1,4 +1,4 @@
-package com.library.study.demo.controller.dto;
+package com.library.study.demo.controller.dto.author;
 
 import com.library.study.demo.domain.Author;
 import lombok.Getter;
