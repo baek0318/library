@@ -1,6 +1,6 @@
 package com.library.study.demo.controller;
 
-import com.library.study.demo.controller.dto.*;
+import com.library.study.demo.controller.dto.author.*;
 import com.library.study.demo.domain.Author;
 import com.library.study.demo.service.AuthorService;
 import org.springframework.http.ResponseEntity;

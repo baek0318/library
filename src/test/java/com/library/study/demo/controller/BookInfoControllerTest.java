@@ -1,7 +1,7 @@
 package com.library.study.demo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.library.study.demo.controller.dto.SaveBookInfoRequest;
+import com.library.study.demo.controller.dto.bookinfo.SaveBookInfoRequest;
 import com.library.study.demo.service.BookInfoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

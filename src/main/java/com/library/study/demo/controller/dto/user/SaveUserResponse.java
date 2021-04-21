@@ -1,4 +1,4 @@
-package com.library.study.demo.controller.dto;
+package com.library.study.demo.controller.dto.user;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SaveBookResponse {
+public class SaveUserResponse {
 
     private Long id;
 
-    public SaveBookResponse(Long id) {
+    public SaveUserResponse(Long id) {
         this.id = id;
     }
 }

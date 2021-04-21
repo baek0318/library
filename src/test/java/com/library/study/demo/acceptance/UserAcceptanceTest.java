@@ -1,8 +1,8 @@
 package com.library.study.demo.acceptance;
 
-import com.library.study.demo.controller.dto.SaveUserRequest;
-import com.library.study.demo.controller.dto.SaveUserResponse;
-import com.library.study.demo.controller.dto.UserResponse;
+import com.library.study.demo.controller.dto.user.SaveUserRequest;
+import com.library.study.demo.controller.dto.user.SaveUserResponse;
+import com.library.study.demo.controller.dto.user.UserResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

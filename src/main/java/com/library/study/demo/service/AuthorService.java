@@ -1,6 +1,6 @@
 package com.library.study.demo.service;
 
-import com.library.study.demo.controller.dto.SaveAuthorResponse;
+import com.library.study.demo.controller.dto.author.SaveAuthorResponse;
 import com.library.study.demo.dao.AuthorRepository;
 import com.library.study.demo.domain.Author;
 import com.library.study.demo.service.dto.SaveAuthorCommand;
