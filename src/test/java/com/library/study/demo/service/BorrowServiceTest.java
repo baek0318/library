@@ -1,6 +1,12 @@
 package com.library.study.demo.service;
 
+import com.library.study.demo.dao.BookRepository;
+import com.library.study.demo.dao.BorrowRepository;
+import com.library.study.demo.dao.UserRepository;
+import com.library.study.demo.domain.Book;
 import com.library.study.demo.domain.Borrow;
+import com.library.study.demo.domain.User;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,16 +14,30 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.BDDMockito.given;
+
 @ExtendWith(MockitoExtension.class)
 public class BorrowServiceTest {
- /*
+
     @Mock
     private BorrowRepository borrowRepository;
+
+    @Mock
+    private BookRepository bookRepository;
+
+    @Mock
+    private UserRepository userRepository;
 
     @InjectMocks
     private BorrowService borrowService;
 
-
+    /*
         책을 빌리는 로직
         1. 유저가 책정보 목록을 검색한다
         2. 자신이 원하는 목록에 들어간다
@@ -33,9 +53,47 @@ public class BorrowServiceTest {
     */
 
     @Test
-    @DisplayName("책을 빌릴 수 있는지 테스트")
-    void testBorrowBook() {
+    @DisplayName("책을 빌릴 수 없는 경우 테스트")
+    void testCannotBorrowBook() {
+        //given
+        User user = new User("baek", "1234", null);
+        Book book = new Book(true, null);
+        Borrow borrow1 = new Borrow(book, user);
+        Borrow borrow2 = new Borrow(book, user);
+        Borrow borrow3 = new Borrow(book, user);
+        Borrow borrow4 = new Borrow(book, user);
+        Borrow borrow5 = new Borrow(book, user);
+        List<Borrow> list = Arrays.asList(borrow1, borrow2, borrow3, borrow4, borrow5);
+        given(borrowRepository.findByUserId(anyLong())).willReturn(list);
 
+        //when //then
+        Assertions.assertThatThrownBy(() -> borrowService.save(1L, 1L))
+                .isInstanceOf(IllegalStateException.class);
 
+    }
+
+    @Test
+    @DisplayName("책을 빌릴 수 있는 경우 테스트")
+    void testCanBorrowBook() {
+        //given
+        User user = new User("baek", "1234", null);
+        Book book = new Book(true, null);
+        Borrow borrow1 = new Borrow(book, user);
+        Borrow borrow2 = new Borrow(book, user);
+        Borrow borrow3 = new Borrow(book, user);
+        Borrow borrow4 = new Borrow(book, user);
+        Borrow borrow = new Borrow(book, user);
+        borrow.setId(1L);
+        List<Borrow> list = Arrays.asList(borrow1, borrow2, borrow3, borrow4);
+        given(borrowRepository.findByUserId(anyLong())).willReturn(list);
+        given(bookRepository.findById(anyLong())).willReturn(Optional.of(book));
+        given(userRepository.findById(anyLong())).willReturn(Optional.of(user));
+        given(borrowRepository.save(any())).willReturn(borrow);
+
+        //when
+        Long result = borrowService.save(1L, 1L);
+
+        //then
+        Assertions.assertThat(result).isEqualTo(1L);
     }
 }

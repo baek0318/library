@@ -23,7 +23,7 @@ public class BorrowAcceptanceTest {
     void saveBorrow() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        BorrowRequest borrowDto = new BorrowRequest("2021-04-21", 1L);
+        BorrowRequest borrowDto = new BorrowRequest( 1L);
         HttpEntity<BorrowRequest> request = new HttpEntity<>(borrowDto, headers);
 
         ResponseEntity<BorrowResponse> responseEntity = restTemplate
@@ -35,6 +35,6 @@ public class BorrowAcceptanceTest {
                 );
 
         Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
+        Assertions.assertThat(responseEntity.getBody().getId()).isEqualTo(2L);
     }
 }
