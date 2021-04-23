@@ -9,3 +9,5 @@ insert into author(name) values('baeked');
 insert into book_info(title, author_id) values('peachberr', 1);
 
 insert into book(status, book_info_id) values(TRUE, 1);
+
+insert into borrow(borrow_date, book_id, user_id) values('2021-04-23', 1, 1);

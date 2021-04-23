@@ -8,12 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BorrowRequest {
 
-    private String date;
-
     private Long bookId;
 
-    public BorrowRequest(String date, Long bookId) {
-        this.date = date;
+    public BorrowRequest(Long bookId) {
         this.bookId = bookId;
     }
 }
