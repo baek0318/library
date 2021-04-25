@@ -55,4 +55,8 @@ public class BorrowService {
                         () -> new IllegalArgumentException("존재하지 않는 borrow-id 입니다")
                 );
     }
+
+    public List<Borrow> getBorrowInfoList(Long userId) {
+        return borrowRepository.findByUserId(userId);
+    }
 }
