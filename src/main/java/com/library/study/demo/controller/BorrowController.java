@@ -1,14 +1,12 @@
 package com.library.study.demo.controller;
 
-import com.library.study.demo.controller.dto.borrow.BorrowInfoListResponse;
-import com.library.study.demo.controller.dto.borrow.BorrowInfoResponse;
-import com.library.study.demo.controller.dto.borrow.BorrowRequest;
-import com.library.study.demo.controller.dto.borrow.BorrowResponse;
+import com.library.study.demo.controller.dto.borrow.*;
 import com.library.study.demo.domain.Borrow;
 import com.library.study.demo.service.BorrowService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,5 +52,16 @@ public class BorrowController {
                                 .collect(Collectors.toList())
                 )
         );
+    }
+
+    @PutMapping("/{borrow-id}")
+    public ResponseEntity<BorrowResponse> updateReturnDate(
+            @PathVariable(name = "borrow-id") Long id,
+            @RequestBody UpdateBorrowRequest updateBorrowDto
+    ) {
+
+        Long result = borrowService.updateReturnDate(id, LocalDate.parse(updateBorrowDto.getDate()));
+
+        return ResponseEntity.ok(new BorrowResponse(result));
     }
 }

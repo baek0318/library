@@ -59,4 +59,11 @@ public class BorrowService {
     public List<Borrow> getBorrowInfoList(Long userId) {
         return borrowRepository.findByUserId(userId);
     }
+
+    public Long updateReturnDate(Long id, LocalDate date) {
+        Borrow borrow = borrowRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("일치하지 않는 borrow-id 입니다"));
+        borrow.updateReturnDate(date);
+        return borrowRepository.save(borrow).getId();
+    }
 }

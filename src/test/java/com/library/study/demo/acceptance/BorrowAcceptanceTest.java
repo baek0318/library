@@ -1,9 +1,6 @@
 package com.library.study.demo.acceptance;
 
-import com.library.study.demo.controller.dto.borrow.BorrowInfoListResponse;
-import com.library.study.demo.controller.dto.borrow.BorrowInfoResponse;
-import com.library.study.demo.controller.dto.borrow.BorrowRequest;
-import com.library.study.demo.controller.dto.borrow.BorrowResponse;
+import com.library.study.demo.controller.dto.borrow.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -85,7 +82,7 @@ public class BorrowAcceptanceTest {
     @Test
     @DisplayName("반납하기")
     void returnBook() {
-        UpdateBorrowRequest updateDto = new UpdateBorrowRequest();
+        UpdateBorrowRequest updateDto = new UpdateBorrowRequest("2021-04-25");
         HttpEntity<UpdateBorrowRequest> request = new HttpEntity(updateDto, headers);
 
         ResponseEntity<BorrowResponse> responseEntity = restTemplate
@@ -98,5 +95,6 @@ public class BorrowAcceptanceTest {
                 );
 
         Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(responseEntity.getBody().getId()).isEqualTo(1L);
     }
 }
