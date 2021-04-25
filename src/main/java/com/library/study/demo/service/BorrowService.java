@@ -48,4 +48,11 @@ public class BorrowService {
             throw new IllegalStateException("더이상 빌릴 수 없습니다");
         }
     }
+
+    public Borrow getBorrowInfo(Long id) {
+        return borrowRepository.findById(id)
+                .orElseThrow(
+                        () -> new IllegalArgumentException("존재하지 않는 borrow-id 입니다")
+                );
+    }
 }

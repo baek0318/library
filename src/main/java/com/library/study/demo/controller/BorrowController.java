@@ -1,13 +1,15 @@
 package com.library.study.demo.controller;
 
+import com.library.study.demo.controller.dto.borrow.BorrowInfoResponse;
 import com.library.study.demo.controller.dto.borrow.BorrowRequest;
 import com.library.study.demo.controller.dto.borrow.BorrowResponse;
+import com.library.study.demo.domain.Borrow;
 import com.library.study.demo.service.BorrowService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("borrow")
+@RequestMapping("/borrow")
 public class BorrowController {
 
     private final BorrowService borrowService;
@@ -25,5 +27,13 @@ public class BorrowController {
         Long result = borrowService.save(id, borrowDto.getBookId());
 
         return ResponseEntity.ok(new BorrowResponse(result));
+    }
+
+    @GetMapping("/{borrow-id}")
+    public ResponseEntity<BorrowInfoResponse> getBorrowInfo(@PathVariable(name = "borrow-id") Long id) {
+
+        Borrow borrow = borrowService.getBorrowInfo(id);
+
+        return ResponseEntity.ok(new BorrowInfoResponse(borrow));
     }
 }
